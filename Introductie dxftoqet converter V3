@@ -1,0 +1,44 @@
+
+DXF to QET ELMT converter V3.0 use SQlite
+==============================================================================================================
+
+This converter converts only ASCII dxf files
+binary dxf files are not converted.
+
+when having problems with a dxf file, copy paste the log tab into a email
+with a description of the problem you have found
+
+if you have a drawing with block inside blocks, open this drawing with a cad program and 
+explode this blocks into one level blocks.
+
+==============================================================================================================
+
+A few steps to follow
+
+Click on "Open dxf file" to search the dxf file you want to convert
+
+next click on "Load dxf into DB", this starts splitting and loading the dxf code into the different db tables
+
+is this is don you dont need everityme to do the "load dxf into DB"
+
+you can then click on "Choose DB to proces"
+
+after "Load dxf into DB" or "Choose DB to proces" click on "Create QET elmt" to create a elmt output
+
+you can check this syntax under the tab "ELMT"
+
+Then click on "Save to ELMT file" to store the result into the QET user cymbols folder
+
+if this is not done into the correct folder, checkout the tab settings to change the destination path
+
+The time needed for loading into the DB depents on the amount of lines in the dxf file
+
+21:26:49=> Start loading dxf file into tables 
+total lines : 28935
+header items :255
+tables items :447
+blocks items :405
+entities items :397
+End loading into db 21:31:25
+
+the creation of the ELMT file is faster and depents on the amount of ENTITIES and BLOCKS in the dxf file.
