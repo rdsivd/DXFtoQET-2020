@@ -10,7 +10,7 @@
 #define DXF_item_split 50000 //dxf split tables
 #define DXF_codes_set 10000
 #define DXF_codeset_copies 10000
-#define QET_L_POLYLINE 2000
+#define QET_L_POLYLINE 3000
 #define QSTRING_max_lengt 1900000
 #define DXF_layers_set 500
 
