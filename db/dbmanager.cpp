@@ -1229,6 +1229,7 @@ int dbManager::dbManager_added_records(const QString &pathname, int32_t *Max_lin
 
 		//x2=Query1.exec();
 		x1++;
+        //m_db.commit();
 
 	}
 

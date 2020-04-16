@@ -728,7 +728,7 @@ QString elmt_blocks::Insert_Block()
 
 					New_DXF_blocks2.FromBlock=Record3.value("dxf_2").toString();
 
-					New_DXF_blocks2.Insert_Block();
+                    New_DXF_blocks2.Insert_Block();
 
 					//Logtext.append(New_DXF_blocks2.Insert_Block());
 					//DXF_Entities_List.DXF_Result.append(New_DXF_blocks2.Insert_Block());
@@ -982,7 +982,7 @@ QString elmt_blocks::Insert_Block()
 					New_DXF_LWPolyline.QET_softID=Record3.value("dxf_330").toString();
 
 
-                    New_DXF_LWPolyline.QET_color="blue";//DXF_main_base[0].QDXF_block_polyline_color;
+                    New_DXF_LWPolyline.QET_color=DXF_main_base[0].QDXF_block_polyline_color;
 
 					if (Record3.value("dxf_70").toInt()==1)
 					{
@@ -1006,11 +1006,13 @@ QString elmt_blocks::Insert_Block()
 
 					if (max_vertex >=QET_L_POLYLINE)
 					{
-						Logtext.append("max_vertex :  ");
-						Logtext.append(QString::number(max_vertex));
-						Logtext.append(" > ");
-						Logtext.append(QString::number(QET_L_POLYLINE));
-						Logtext.append(" \n");
+                        Signal_log1.clear();
+                        Signal_log1.append("max_vertex :  ");
+                        Signal_log1.append(QString::number(max_vertex));
+                        Signal_log1.append(" > ");
+                        Signal_log1.append(QString::number(QET_L_POLYLINE));
+                        Signal_log1.append(" \n");
+                        emit send_log(Signal_log1);
 					}
 
 					//NewQueryBlock.previous();
@@ -1208,6 +1210,20 @@ QString elmt_blocks::Insert_Block()
                                 {
                                     New_DXF_LWPolyline.QET_x[count_vertex]=(Record4.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
                                     New_DXF_LWPolyline.QET_y[count_vertex]=(Record4.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
+                                    count_vertex++;
+                                }
+
+                                hatchx=Record4.value("dxf_11").toDouble();
+                                hatchy=Record4.value("dxf_21").toDouble();
+
+                                if (hatchx==0.0 and hatchy==0.0 )
+                                {
+
+                                }
+                                else
+                                {
+                                    New_DXF_LWPolyline.QET_x[count_vertex]=Record4.value("dxf_11").toDouble();
+                                    New_DXF_LWPolyline.QET_y[count_vertex]=Record4.value("dxf_21").toDouble();
                                     count_vertex++;
                                 }
 

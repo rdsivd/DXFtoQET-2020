@@ -148,7 +148,7 @@ QString elmt_entities::Get_Entities (QString ELMT_filename)
 	New_DXF_Input.QET_x=0;
 	New_DXF_Input.QET_y=0;
 
-	New_DXF_Input.QET_rotation=90;
+    New_DXF_Input.QET_rotation=0;
 	New_DXF_Input.QET_text="converted";
 	New_DXF_Input.QET_size=2;
 	New_DXF_Input.QET_text_style="default"	;
@@ -438,6 +438,23 @@ QString elmt_entities::Get_Entities (QString ELMT_filename)
 		{			/*  <text x="-11" y="3" size="6" rotation="90" text="Vcc"/>
 				<text x="-7" y="-8" size="3" text="HC-SR04"/>
 				<text x="-50" y="-45" text="Test" color="white" size="9"/>*/
+
+            /* 2020 04 16 : <dynamic_text text_from="ElementInfo" font="Sans Serif,2,-1,5,25,0,0,0,0,0" frame="true"
+              rotation="0" uuid="{1a723293-b70f-4765-a2e8-563cb578d6fd}"
+              Valignment="AlignVCenter" x="109" y="-110" text_width="-1" Halignment="AlignHCenter" z="1">
+                <text></text>
+                <info_name>label</info_name>
+            </dynamic_text>
+
+                <dynamic_text z="617" rotation="0" x="-20" frame="false"
+                    Valignment="AlignTop" y="-40"
+                    Halignment="AlignLeft" text_width="-1" font="Sans Serif,9,-1,5,0,0,0,0,0,0,normal"
+                    uuid="{657a2145-2947-48cd-9b13-e8f8b0ba4880}" text_from="UserText">
+                <text>test</text>
+                </dynamic_text>
+
+            */
+
 
 			New_DXF_Input.QET_x=Record2.value("dxf_10").toDouble();
 			New_DXF_Input.QET_y=Record2.value("dxf_20").toDouble();
@@ -777,13 +794,30 @@ QString elmt_entities::Get_Entities (QString ELMT_filename)
 			}
 			New_DXF_blocks.Block_rotation=Record2.value("dxf_43").toDouble();
 
+
+
+            Signal_log1.clear();
+            Signal_log1.append("DXF file insert BLOCK");
+            Signal_log1.append(New_DXF_blocks.Block_name);
+            Signal_log1.append("\n");
+            Signal_log1.append("============================================================================\n");
+            Signal_log1.append(QTime::currentTime().toString());
+            Signal_log1.append(" \n");
+            Signal_log1.append("============================================================================");
+
+            emit send_log(Signal_log1);
+
+
+
+
+
 			New_DXF_blocks.FromBlock="Inserted from entitie ";
 
-			Signal_waarde1.clear();
+            /*Signal_waarde1.clear();
 			Signal_waarde1.append("Inserted from entitie \n");
 			Signal_waarde1.append("Inserted from entitie block : ");
 			Signal_waarde1.append(Record2.value("dxf_2").toString());
-			Signal_waarde1.append(" will be converted as a drawing part \n");
+            Signal_waarde1.append(" will be converted as a drawing part \n");*/
 
             //emit Signal1(Signal_waarde1);
 
@@ -1098,7 +1132,7 @@ QString elmt_entities::Get_Entities (QString ELMT_filename)
 			New_DXF_LWPolyline.QET_line_weight="thin";
 			New_DXF_LWPolyline.QET_filling="none";
 
-			New_DXF_LWPolyline.QET_color="red";//DXF_main_base[0].QDXF_entitie_polyline_color;
+            New_DXF_LWPolyline.QET_color=DXF_main_base[0].QDXF_entitie_polyline_color;
 
 			if (Record2.value("dxf_70").toInt()==1)
 			{
@@ -1317,6 +1351,20 @@ QString elmt_entities::Get_Entities (QString ELMT_filename)
                         {
                             New_DXF_LWPolyline.QET_x[count_vertex]=Record3.value("dxf_10").toDouble();
                             New_DXF_LWPolyline.QET_y[count_vertex]=Record3.value("dxf_20").toDouble();
+                            count_vertex++;
+                        }
+
+                        hatchx=Record3.value("dxf_11").toDouble();
+                        hatchy=Record3.value("dxf_21").toDouble();
+
+                        if (hatchx==0.0 and hatchy==0.0 )
+                        {
+
+                        }
+                        else
+                        {
+                            New_DXF_LWPolyline.QET_x[count_vertex]=Record3.value("dxf_11").toDouble();
+                            New_DXF_LWPolyline.QET_y[count_vertex]=Record3.value("dxf_21").toDouble();
                             count_vertex++;
                         }
 
