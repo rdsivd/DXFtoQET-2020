@@ -45,6 +45,7 @@ class elmt_block_level2 : public QWidget
 
 	QString Logtext;
 	QString Recordvalue;
+    QString Recordvalue2;
 
 	QString ELMT_ID_instruction;
 

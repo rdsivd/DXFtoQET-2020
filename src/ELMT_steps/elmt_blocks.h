@@ -48,7 +48,7 @@ class elmt_blocks : public QWidget
 
 	QString Logtext;
 	QString Recordvalue;
-
+    QString Recordvalue2;
 	QString ELMT_ID_instruction;
 
 	QString Rec_Command;
@@ -95,7 +95,7 @@ class elmt_blocks : public QWidget
 	QString Signal_waarde1;
     QString Signal_log1;
 
-	QString Insert_Block();
+    QString Insert_Block_1();
 
 	signals:
 

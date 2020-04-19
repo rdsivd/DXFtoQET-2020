@@ -96,13 +96,15 @@ class DXFtoQET3DB : public QWidget
 		int32_t id_objects;
 		int32_t id_thumbnailimage;
 
-		int sw_header[1072];
-		int sw_classes[1072];
-		int sw_tables[1072];
-		int sw_blocks[1072];
-		int sw_entities[1072];
-		int sw_objects[1072];
-		int sw_thumbnailimage[1072];
+        //    QVector<double> QET_x =  QVector<double>(QET_L_POLYLINE,0.0);
+
+        int sw_header[1072];
+        int sw_classes[1072];
+        int sw_tables[1072];
+        int sw_blocks[1072];
+        int sw_entities[1072];
+        int sw_objects[1072];
+        int sw_thumbnailimage[1072];
 
 		int32_t count_header;
 		int32_t count_header_record_id;
@@ -212,6 +214,8 @@ class DXFtoQET3DB : public QWidget
 		QStringList dxf_entities;
 		QStringList dxf_objects;
 		QStringList dxf_thumbnailimage;
+
+        //    QVector<double> QET_x =  QVector<double>(QET_L_POLYLINE,0.0);
 
 		QStringList dxf_header_items[DXF_item_split];
 		QStringList dxf_classes_items[DXF_item_split];

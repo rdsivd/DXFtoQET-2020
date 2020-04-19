@@ -4,8 +4,6 @@
 #include <QtCore>
 #include <QWidget>
 
-//#include "db/dbmanager.h"
-
 #define DXF_base_set 1
 #define DXF_item_split 50000 //dxf split tables
 #define DXF_codes_set 10000

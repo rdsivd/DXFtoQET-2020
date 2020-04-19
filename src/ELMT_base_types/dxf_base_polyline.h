@@ -4,6 +4,8 @@
 //#include <QMainWindow>
 #include <QWidget>
 #include <QObject>
+#include <QVector>
+
 
 #include "src/DXF_control/dxf_layer_control.h"
 #include "src/DXF_control/dxf_ltype_control.h"
@@ -29,8 +31,10 @@ class dxf_base_polyline : public QWidget // QMainWindow
 	QString QET_handle;			//5
 	QString QET_softID;			//330
 
-	double QET_x[QET_L_POLYLINE];
-	double QET_y[QET_L_POLYLINE];
+    //double QET_L {QET_L_POLYLINE};
+    QVector<double> QET_x =  QVector<double>(QET_L_POLYLINE,0.0);
+    QVector<double> QET_y =  QVector<double>(QET_L_POLYLINE,0.0);
+
 
 	int count_segments;
 	int segments;

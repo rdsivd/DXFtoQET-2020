@@ -13,7 +13,7 @@ elmt_blocks::elmt_blocks(QWidget *parent) : QWidget(parent)
 
 }
 
-QString elmt_blocks::Insert_Block()
+QString elmt_blocks::Insert_Block_1()
 {
 
 	//dbManager Manage_Blocks;
@@ -46,16 +46,18 @@ QString elmt_blocks::Insert_Block()
 
 
 
-	dxf_base_line New_DXF_Line;
-	dxf_base_circle New_DXF_Circle;
-	dxf_base_arc New_DXF_Arc;
-	dxf_base_text New_DXF_Text;
-	dxf_base_input New_DXF_Input;
-	dxf_base_terminal New_DXF_Terminal;
-	dxf_base_ellipse New_DXF_Ellipse;
-	dxf_base_polyline New_DXF_Polyline;
-	dxf_base_polyline New_DXF_LWPolyline;
-	dxf_base_polyline New_DXF_SOLID;
+    dxf_base_line New_DXF_Line2;
+    dxf_base_circle New_DXF_Circle2;
+    dxf_base_arc New_DXF_Arc2;
+    dxf_base_text New_DXF_Text2;
+
+    dxf_base_input New_DXF_Input2;
+    dxf_base_terminal New_DXF_Terminal2;
+    dxf_base_ellipse New_DXF_Ellipse2;
+    dxf_base_polyline New_DXF_Polyline2;
+    dxf_base_polyline New_DXF_LWPolyline2;
+    dxf_base_polyline New_DXF_SOLID2;
+
     elmt_blocks New_DXF_blocks2;
 
 	connect(&New_DXF_blocks2 ,SIGNAL (Signal1(const QString &)),parent() ,SLOT(update_proces(const QString &)));
@@ -203,31 +205,31 @@ QString elmt_blocks::Insert_Block()
 					 * y1="-20" x1="10" y2="-10" x2="10"/>*/
 
 
-					New_DXF_Line.QET_x1=(Record3.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
-					New_DXF_Line.QET_x2=(Record3.value("dxf_11").toDouble()*Block_scale_x)+Block_X;
-					New_DXF_Line.QET_y1=(Record3.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
-					New_DXF_Line.QET_y2=(Record3.value("dxf_21").toDouble()*Block_scale_y)+Block_Y;
+                    New_DXF_Line2.QET_x1=(Record3.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
+                    New_DXF_Line2.QET_x2=(Record3.value("dxf_11").toDouble()*Block_scale_x)+Block_X;
+                    New_DXF_Line2.QET_y1=(Record3.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
+                    New_DXF_Line2.QET_y2=(Record3.value("dxf_21").toDouble()*Block_scale_y)+Block_Y;
 
-					New_DXF_Line.QET_layer=Record3.value("dxf_8").toString();
-					New_DXF_Line.QET_ltype=Record3.value("dxf_6").toString();
+                    New_DXF_Line2.QET_layer=Record3.value("dxf_8").toString();
+                    New_DXF_Line2.QET_ltype=Record3.value("dxf_6").toString();
 					//New_DXF_Line.QET_handle=QET_handle;
 					//New_DXF_Line.QET_handle.append(":");
-					New_DXF_Line.QET_handle=Record3.value("dxf_5").toString();
-					New_DXF_Line.QET_block_name=QET_block_name;
-					New_DXF_Line.QET_block_name_id=QET_block_name_id;
+                    New_DXF_Line2.QET_handle=Record3.value("dxf_5").toString();
+                    New_DXF_Line2.QET_block_name=QET_block_name;
+                    New_DXF_Line2.QET_block_name_id=QET_block_name_id;
 					//New_DXF_Line.QET_handle=Record3.value("dxf_5").toString();
-					New_DXF_Line.QET_softID=Record3.value("dxf_330").toString();
+                    New_DXF_Line2.QET_softID=Record3.value("dxf_330").toString();
 
-					New_DXF_Line.QET_lenght1=1.5;
-					New_DXF_Line.QET_lenght2=1.5;
-					New_DXF_Line.QET_antialias="false";
-					New_DXF_Line.QET_end1="none";
-					New_DXF_Line.QET_end2="none";
+                    New_DXF_Line2.QET_lenght1=1.5;
+                    New_DXF_Line2.QET_lenght2=1.5;
+                    New_DXF_Line2.QET_antialias="false";
+                    New_DXF_Line2.QET_end1="none";
+                    New_DXF_Line2.QET_end2="none";
 
-					New_DXF_Line.QET_line_style="normal";
-					New_DXF_Line.QET_line_weight="thin";
-					New_DXF_Line.QET_filling="none";
-					New_DXF_Line.QET_color=DXF_main_base[0].QDXF_block_line_color;
+                    New_DXF_Line2.QET_line_style="normal";
+                    New_DXF_Line2.QET_line_weight="thin";
+                    New_DXF_Line2.QET_filling="none";
+                    New_DXF_Line2.QET_color=DXF_main_base[0].QDXF_block_line_color;
 
                     if (stringsize > QSTRING_max_lengt)
                     {
@@ -240,7 +242,7 @@ QString elmt_blocks::Insert_Block()
                     }
                     else
                     {
-                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_Line.CreateElmt());
+                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_Line2.CreateElmt());
                     }
 					//DXF_Block_Value.append(New_DXF_Line.CreateElmt());
 
@@ -252,25 +254,25 @@ QString elmt_blocks::Insert_Block()
 					 * style="line-style:normal;line-weight:thin;filling:none;color:black"
 					 * diameter="22"/> */
 
-					New_DXF_Circle.QET_x=(Record3.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
-					New_DXF_Circle.QET_y=(Record3.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
-					New_DXF_Circle.QET_diameter=Record3.value(("dxf_40")).toDouble()*Block_scale_x;
+                    New_DXF_Circle2.QET_x=(Record3.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
+                    New_DXF_Circle2.QET_y=(Record3.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
+                    New_DXF_Circle2.QET_diameter=Record3.value(("dxf_40")).toDouble()*Block_scale_x;
 
-					New_DXF_Circle.QET_layer=Record3.value("dxf_8").toString();
-					New_DXF_Circle.QET_ltype=Record3.value("dxf_6").toString();
+                    New_DXF_Circle2.QET_layer=Record3.value("dxf_8").toString();
+                    New_DXF_Circle2.QET_ltype=Record3.value("dxf_6").toString();
 					//New_DXF_Circle.QET_handle=QET_handle;
 					//New_DXF_Circle.QET_handle.append(":");
-					New_DXF_Circle.QET_handle=Record3.value("dxf_5").toString();
-					New_DXF_Circle.QET_block_name=QET_block_name;
-					New_DXF_Circle.QET_block_name_id=QET_block_name_id;
+                    New_DXF_Circle2.QET_handle=Record3.value("dxf_5").toString();
+                    New_DXF_Circle2.QET_block_name=QET_block_name;
+                    New_DXF_Circle2.QET_block_name_id=QET_block_name_id;
 					//New_DXF_Circle.QET_handle=Record3.value("dxf_5").toString();
-					New_DXF_Circle.QET_softID=Record3.value("dxf_330").toString();
+                    New_DXF_Circle2.QET_softID=Record3.value("dxf_330").toString();
 
-					New_DXF_Circle.QET_antialias="false";
-					New_DXF_Circle.QET_line_style="normal";
-					New_DXF_Circle.QET_line_weight="thin";
-					New_DXF_Circle.QET_filling="none";
-					New_DXF_Circle.QET_color=DXF_main_base[0].QDXF_block_circle_color;
+                    New_DXF_Circle2.QET_antialias="false";
+                    New_DXF_Circle2.QET_line_style="normal";
+                    New_DXF_Circle2.QET_line_weight="thin";
+                    New_DXF_Circle2.QET_filling="none";
+                    New_DXF_Circle2.QET_color=DXF_main_base[0].QDXF_block_circle_color;
 
                     if (stringsize > QSTRING_max_lengt)
                     {
@@ -283,7 +285,7 @@ QString elmt_blocks::Insert_Block()
                     }
                     else
                     {
-                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_Circle.Create_circle());
+                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_Circle2.Create_circle());
                     }
 					//DXF_Block_Value.append(New_DXF_Circle.Create_circle());
 				}
@@ -295,31 +297,31 @@ QString elmt_blocks::Insert_Block()
 						line-weight:normal;filling:none;color:black"
 						start="-30" angle="-299"/> */
 
-					New_DXF_Arc.QET_x=((Record3.value("dxf_10").toDouble()*Block_scale_x)+Block_X)-(Record3.value("dxf_40").toDouble()*Block_scale_x);
+                    New_DXF_Arc2.QET_x=((Record3.value("dxf_10").toDouble()*Block_scale_x)+Block_X)-(Record3.value("dxf_40").toDouble()*Block_scale_x);
 					//New_DXF_Arc.QET_x=((Record3.value("dxf_10").toDouble())+Block_X)-(Record3.value("dxf_40").toDouble()*Block_scale_x);
-					New_DXF_Arc.QET_y=((Record3.value("dxf_20").toDouble()*Block_scale_y)+Block_Y)+(Record3.value("dxf_40").toDouble()*Block_scale_y);
+                    New_DXF_Arc2.QET_y=((Record3.value("dxf_20").toDouble()*Block_scale_y)+Block_Y)+(Record3.value("dxf_40").toDouble()*Block_scale_y);
 					//New_DXF_Arc.QET_y=((Record3.value("dxf_20").toDouble())+Block_Y)+(Record3.value("dxf_40").toDouble()*Block_scale_y);
-					New_DXF_Arc.QET_width=Record3.value("dxf_40").toDouble()*2*Block_scale_x;
-					New_DXF_Arc.QET_height=Record3.value("dxf_40").toDouble()*2*Block_scale_y;
-					New_DXF_Arc.QET_start=Record3.value("dxf_50").toDouble();
-					New_DXF_Arc.QET_end=Record3.value("dxf_51").toDouble();
+                    New_DXF_Arc2.QET_width=Record3.value("dxf_40").toDouble()*2*Block_scale_x;
+                    New_DXF_Arc2.QET_height=Record3.value("dxf_40").toDouble()*2*Block_scale_y;
+                    New_DXF_Arc2.QET_start=Record3.value("dxf_50").toDouble();
+                    New_DXF_Arc2.QET_end=Record3.value("dxf_51").toDouble();
 
-					New_DXF_Arc.QET_layer=Record3.value("dxf_8").toString();
-					New_DXF_Arc.QET_ltype=Record3.value("dxf_6").toString();
+                    New_DXF_Arc2.QET_layer=Record3.value("dxf_8").toString();
+                    New_DXF_Arc2.QET_ltype=Record3.value("dxf_6").toString();
 					//New_DXF_Arc.QET_handle=QET_handle;
 					//New_DXF_Arc.QET_handle.append(":");
-					New_DXF_Arc.QET_handle=Record3.value("dxf_5").toString();
-					New_DXF_Arc.QET_block_name=QET_block_name;
-					New_DXF_Arc.QET_block_name_id=QET_block_name_id;
+                    New_DXF_Arc2.QET_handle=Record3.value("dxf_5").toString();
+                    New_DXF_Arc2.QET_block_name=QET_block_name;
+                    New_DXF_Arc2.QET_block_name_id=QET_block_name_id;
 					//New_DXF_Arc.QET_handle=Record3.value("dxf_5").toString();
-					New_DXF_Arc.QET_softID=Record3.value("dxf_330").toString();
+                    New_DXF_Arc2.QET_softID=Record3.value("dxf_330").toString();
 
 
-					New_DXF_Arc.QET_antialias="false";
-					New_DXF_Arc.QET_line_style="normal";
-					New_DXF_Arc.QET_line_weight="thin";
-					New_DXF_Arc.QET_filling="none";
-					New_DXF_Arc.QET_color=DXF_main_base[0].QDXF_block_arc_color;
+                    New_DXF_Arc2.QET_antialias="false";
+                    New_DXF_Arc2.QET_line_style="normal";
+                    New_DXF_Arc2.QET_line_weight="thin";
+                    New_DXF_Arc2.QET_filling="none";
+                    New_DXF_Arc2.QET_color=DXF_main_base[0].QDXF_block_arc_color;
 
                     if (stringsize > QSTRING_max_lengt)
                     {
@@ -332,7 +334,7 @@ QString elmt_blocks::Insert_Block()
                     }
                     else
                     {
-                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_Arc.Create_arc());
+                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_Arc2.Create_arc());
                     }
 					//DXF_Block_Value.append(New_DXF_Arc.Create_arc());
 				}
@@ -343,32 +345,32 @@ QString elmt_blocks::Insert_Block()
 						<text x="-7" y="-8" size="3" text="HC-SR04"/>
 						<text x="-50" y="-45" text="Test" color="white" size="9"/>*/
 
-					New_DXF_Text.QET_x=(Record3.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
+                    New_DXF_Text2.QET_x=(Record3.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
 					//New_DXF_Text.QET_x=(Record3.value("dxf_10").toDouble())+Block_X;
-					New_DXF_Text.QET_y=(Record3.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
+                    New_DXF_Text2.QET_y=(Record3.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
 					//New_DXF_Text.QET_y=(Record3.value("dxf_20").toDouble())+Block_Y;
 
-					New_DXF_Text.QET_rotation=Record3.value("dxf_50").toDouble();
-					New_DXF_Text.QET_text=Record3.value("dxf_1").toString();
-					New_DXF_Text.QET_size=Record3.value("dxf_40").toDouble();
-					New_DXF_Text.QET_text_style=Record3.value("dxf_7").toString();
+                    New_DXF_Text2.QET_rotation=Record3.value("dxf_50").toDouble();
+                    New_DXF_Text2.QET_text=Record3.value("dxf_1").toString();
+                    New_DXF_Text2.QET_size=Record3.value("dxf_40").toDouble();
+                    New_DXF_Text2.QET_text_style=Record3.value("dxf_7").toString();
 
-					New_DXF_Text.QET_layer=Record3.value("dxf_8").toString();
-					New_DXF_Text.QET_ltype=Record3.value("dxf_6").toString();
+                    New_DXF_Text2.QET_layer=Record3.value("dxf_8").toString();
+                    New_DXF_Text2.QET_ltype=Record3.value("dxf_6").toString();
 					//New_DXF_Text.QET_handle=QET_handle;
 					//New_DXF_Text.QET_handle.append(":");
-					New_DXF_Text.QET_handle=Record3.value("dxf_5").toString();
-					New_DXF_Text.QET_block_name=QET_block_name;
-					New_DXF_Text.QET_block_name_id=QET_block_name_id;
+                    New_DXF_Text2.QET_handle=Record3.value("dxf_5").toString();
+                    New_DXF_Text2.QET_block_name=QET_block_name;
+                    New_DXF_Text2.QET_block_name_id=QET_block_name_id;
 					//New_DXF_Text.QET_handle=Record3.value("dxf_5").toString();
-					New_DXF_Text.QET_softID=Record3.value("dxf_330").toString();
+                    New_DXF_Text2.QET_softID=Record3.value("dxf_330").toString();
 
 
 					//New_DXF_Text.QET_antialias="false";
 					//New_DXF_Text.QET_line_style="normal";
 					//New_DXF_Text.QET_line_weight="thin";
 					//New_DXF_Text.QET_filling="none";
-					New_DXF_Text.QET_color=DXF_main_base[0].QDXF_block_text_color;
+                    New_DXF_Text2.QET_color=DXF_main_base[0].QDXF_block_text_color;
 
                     if (stringsize > QSTRING_max_lengt)
                     {
@@ -381,7 +383,7 @@ QString elmt_blocks::Insert_Block()
                     }
                     else
                     {
-                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_Text.Create_text());
+                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_Text2.Create_text());
                     }
 					//DXF_Block_Value.append(New_DXF_Text.Create_text());
 				}
@@ -392,33 +394,33 @@ QString elmt_blocks::Insert_Block()
 						<text x="-7" y="-8" size="3" text="HC-SR04"/>
 						<text x="-50" y="-45" text="Test" color="white" size="9"/>*/
 
-					New_DXF_Input.QET_x=(Record3.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
-					New_DXF_Input.QET_y=(Record3.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
+                    New_DXF_Input2.QET_x=(Record3.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
+                    New_DXF_Input2.QET_y=(Record3.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
 
-					New_DXF_Input.QET_rotation=Record3.value("dxf_50").toDouble();
-					New_DXF_Input.QET_text=Record3.value("dxf_1").toString();
-					New_DXF_Input.QET_size=Record3.value("dxf_40").toDouble()*Block_scale_y;
-					New_DXF_Input.QET_text_style=Record3.value("dxf_7").toString();
-					New_DXF_Input.QET_dxf_tag=Record3.value("dxf_2").toString();
+                    New_DXF_Input2.QET_rotation=Record3.value("dxf_50").toDouble();
+                    New_DXF_Input2.QET_text=Record3.value("dxf_1").toString();
+                    New_DXF_Input2.QET_size=Record3.value("dxf_40").toDouble()*Block_scale_y;
+                    New_DXF_Input2.QET_text_style=Record3.value("dxf_7").toString();
+                    New_DXF_Input2.QET_dxf_tag=Record3.value("dxf_2").toString();
 
-					New_DXF_Input.QET_layer=Record3.value("dxf_8").toString();
-					New_DXF_Input.QET_ltype=Record3.value("dxf_6").toString();
+                    New_DXF_Input2.QET_layer=Record3.value("dxf_8").toString();
+                    New_DXF_Input2.QET_ltype=Record3.value("dxf_6").toString();
 					//New_DXF_Input.QET_handle=QET_handle;
 					//New_DXF_Input.QET_handle.append(":");
 					//New_DXF_Input.QET_handle.append(Record3.value("dxf_5").toString());
-					New_DXF_Input.QET_handle=Record3.value("dxf_5").toString();
-					New_DXF_Input.QET_block_name=QET_block_name;
-					New_DXF_Input.QET_block_name_id=QET_block_name_id;
-					New_DXF_Input.QET_softID=Record3.value("dxf_330").toString();
+                    New_DXF_Input2.QET_handle=Record3.value("dxf_5").toString();
+                    New_DXF_Input2.QET_block_name=QET_block_name;
+                    New_DXF_Input2.QET_block_name_id=QET_block_name_id;
+                    New_DXF_Input2.QET_softID=Record3.value("dxf_330").toString();
 
 					//New_DXF_Text.QET_antialias="false";
 					//New_DXF_Text.QET_line_style="normal";
 					//New_DXF_Text.QET_line_weight="thin";
 					//New_DXF_Text.QET_filling="none";
-					New_DXF_Input.QET_rotate="true";
-					New_DXF_Input.QET_tag="none";
+                    New_DXF_Input2.QET_rotate="true";
+                    New_DXF_Input2.QET_tag="none";
 
-					New_DXF_Input.QET_color=DXF_main_base[0].QDXF_block_input_color;
+                    New_DXF_Input2.QET_color=DXF_main_base[0].QDXF_block_input_color;
 
                     if (stringsize > QSTRING_max_lengt)
                     {
@@ -431,7 +433,7 @@ QString elmt_blocks::Insert_Block()
                     }
                     else
                     {
-                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_Input.Create_input());
+                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_Input2.Create_input());
                     }
 					//DXF_Block_Value.append(New_DXF_Input.Create_input());
 				}
@@ -442,33 +444,33 @@ QString elmt_blocks::Insert_Block()
 						<text x="-7" y="-8" size="3" text="HC-SR04"/>
 						<text x="-50" y="-45" text="Test" color="white" size="9"/>*/
 
-					New_DXF_Input.QET_x=(Record3.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
-					New_DXF_Input.QET_y=(Record3.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
+                    New_DXF_Input2.QET_x=(Record3.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
+                    New_DXF_Input2.QET_y=(Record3.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
 
-					New_DXF_Input.QET_rotation=Record3.value("dxf_50").toDouble();
-					New_DXF_Input.QET_text=Record3.value("dxf_1").toString();
-					New_DXF_Input.QET_size=Record3.value("dxf_40").toDouble()*Block_scale_y;
-					New_DXF_Input.QET_text_style=Record3.value("dxf_7").toString();
+                    New_DXF_Input2.QET_rotation=Record3.value("dxf_50").toDouble();
+                    New_DXF_Input2.QET_text=Record3.value("dxf_1").toString();
+                    New_DXF_Input2.QET_size=Record3.value("dxf_40").toDouble()*Block_scale_y;
+                    New_DXF_Input2.QET_text_style=Record3.value("dxf_7").toString();
 
-					New_DXF_Input.QET_layer=Record3.value("dxf_8").toString();
-					New_DXF_Input.QET_ltype=Record3.value("dxf_6").toString();
+                    New_DXF_Input2.QET_layer=Record3.value("dxf_8").toString();
+                    New_DXF_Input2.QET_ltype=Record3.value("dxf_6").toString();
 					//New_DXF_Input.QET_handle=QET_handle;
 					//New_DXF_Input.QET_handle.append(":");
 					//New_DXF_Input.QET_handle.append(Record3.value("dxf_5").toString());
-					New_DXF_Input.QET_handle=Record3.value("dxf_5").toString();
-					New_DXF_Input.QET_block_name=QET_block_name;
-					New_DXF_Input.QET_block_name_id=QET_block_name_id;
-					New_DXF_Input.QET_softID=Record3.value("dxf_330").toString();
+                    New_DXF_Input2.QET_handle=Record3.value("dxf_5").toString();
+                    New_DXF_Input2.QET_block_name=QET_block_name;
+                    New_DXF_Input2.QET_block_name_id=QET_block_name_id;
+                    New_DXF_Input2.QET_softID=Record3.value("dxf_330").toString();
 
 
 					//New_DXF_Text.QET_antialias="false";
 					//New_DXF_Text.QET_line_style="normal";
 					//New_DXF_Text.QET_line_weight="thin";
 					//New_DXF_Text.QET_filling="none";
-					New_DXF_Input.QET_rotate="true";
-					New_DXF_Input.QET_tag="none";
+                    New_DXF_Input2.QET_rotate="true";
+                    New_DXF_Input2.QET_tag="none";
 
-					New_DXF_Input.QET_color=DXF_main_base[0].QDXF_block_input_color;
+                    New_DXF_Input2.QET_color=DXF_main_base[0].QDXF_block_input_color;
 
                     if (stringsize > QSTRING_max_lengt)
                     {
@@ -481,7 +483,7 @@ QString elmt_blocks::Insert_Block()
                     }
                     else
                     {
-                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_Input.Create_input());
+                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_Input2.Create_input());
                     }
 					//DXF_Block_Value.append(New_DXF_Input.Create_input());
 				}
@@ -492,23 +494,23 @@ QString elmt_blocks::Insert_Block()
 						<text x="-7" y="-8" size="3" text="HC-SR04"/>
 						<text x="-50" y="-45" text="Test" color="white" size="9"/>*/
 
-					New_DXF_Terminal.QET_x=(Record3.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
-					New_DXF_Terminal.QET_y=(Record3.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
+                    New_DXF_Terminal2.QET_x=(Record3.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
+                    New_DXF_Terminal2.QET_y=(Record3.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
 
-					New_DXF_Terminal.QET_orientation="north";//Record2.value("dxf_50").toDouble();
+                    New_DXF_Terminal2.QET_orientation="north";//Record2.value("dxf_50").toDouble();
 					//New_DXF_Input.QET_text=Record2.value("dxf_1").toString();
 					//New_DXF_Input.QET_size=Record2.value("dxf_40").toDouble();
 					//New_DXF_Input.QET_text_style=Record2.value("dxf_7").toString();
 
-					New_DXF_Terminal.QET_layer=Record3.value("dxf_8").toString();
-					New_DXF_Terminal.QET_ltype=Record3.value("dxf_6").toString();
+                    New_DXF_Terminal2.QET_layer=Record3.value("dxf_8").toString();
+                    New_DXF_Terminal2.QET_ltype=Record3.value("dxf_6").toString();
 					//New_DXF_Terminal.QET_handle=QET_handle;
 					//New_DXF_Terminal.QET_handle.append(":");
 					//New_DXF_Terminal.QET_handle.append(Record3.value("dxf_5").toString());
-					New_DXF_Terminal.QET_handle=Record3.value("dxf_5").toString();
-					New_DXF_Terminal.QET_block_name=QET_block_name;
-					New_DXF_Terminal.QET_block_name_id=QET_block_name_id;
-					New_DXF_Terminal.QET_softID=Record3.value("dxf_330").toString();
+                    New_DXF_Terminal2.QET_handle=Record3.value("dxf_5").toString();
+                    New_DXF_Terminal2.QET_block_name=QET_block_name;
+                    New_DXF_Terminal2.QET_block_name_id=QET_block_name_id;
+                    New_DXF_Terminal2.QET_softID=Record3.value("dxf_330").toString();
 
 
 					//New_DXF_Text.QET_antialias="false";
@@ -531,7 +533,7 @@ QString elmt_blocks::Insert_Block()
                     }
                     else
                     {
-                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_Terminal.Create_terminal());
+                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_Terminal2.Create_terminal());
                     }
 					//DXF_Block_Value.append(New_DXF_Terminal.Create_terminal());
 				}
@@ -542,24 +544,24 @@ QString elmt_blocks::Insert_Block()
 						<text x="-7" y="-8" size="3" text="HC-SR04"/>
 						<text x="-50" y="-45" text="Test" color="white" size="9"/>*/
 
-					New_DXF_Ellipse.QET_center_x=(Record3.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
-					New_DXF_Ellipse.QET_center_y=(Record3.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
-					New_DXF_Ellipse.QET_major_radius_x=Record3.value("dxf_11").toDouble()*Block_scale_x;
-					New_DXF_Ellipse.QET_major_radius_y=Record3.value("dxf_21").toDouble()*Block_scale_y;
+                    New_DXF_Ellipse2.QET_center_x=(Record3.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
+                    New_DXF_Ellipse2.QET_center_y=(Record3.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
+                    New_DXF_Ellipse2.QET_major_radius_x=Record3.value("dxf_11").toDouble()*Block_scale_x;
+                    New_DXF_Ellipse2.QET_major_radius_y=Record3.value("dxf_21").toDouble()*Block_scale_y;
 
-					New_DXF_Ellipse.QET_end_parameter=Record3.value("dxf_42").toDouble();
-					New_DXF_Ellipse.QET_Start_parameter=Record3.value("dxf_41").toDouble();
-					New_DXF_Ellipse.QET_ratio_minor_axis=Record3.value("dxf_40").toDouble();
+                    New_DXF_Ellipse2.QET_end_parameter=Record3.value("dxf_42").toDouble();
+                    New_DXF_Ellipse2.QET_Start_parameter=Record3.value("dxf_41").toDouble();
+                    New_DXF_Ellipse2.QET_ratio_minor_axis=Record3.value("dxf_40").toDouble();
 
-					New_DXF_Ellipse.QET_layer=Record3.value("dxf_8").toString();
-					New_DXF_Ellipse.QET_ltype=Record3.value("dxf_6").toString();
+                    New_DXF_Ellipse2.QET_layer=Record3.value("dxf_8").toString();
+                    New_DXF_Ellipse2.QET_ltype=Record3.value("dxf_6").toString();
 					//New_DXF_Ellipse.QET_handle=QET_handle;
 					//New_DXF_Ellipse.QET_handle.append(":");
 					//New_DXF_Ellipse.QET_handle.append(Record3.value("dxf_5").toString());
-					New_DXF_Ellipse.QET_handle=Record3.value("dxf_5").toString();
-					New_DXF_Ellipse.QET_block_name=QET_block_name;
-					New_DXF_Ellipse.QET_block_name_id=QET_block_name_id;
-					New_DXF_Ellipse.QET_softID=Record3.value("dxf_330").toString();
+                    New_DXF_Ellipse2.QET_handle=Record3.value("dxf_5").toString();
+                    New_DXF_Ellipse2.QET_block_name=QET_block_name;
+                    New_DXF_Ellipse2.QET_block_name_id=QET_block_name_id;
+                    New_DXF_Ellipse2.QET_softID=Record3.value("dxf_330").toString();
 
 					//New_DXF_Terminal.QET_orientation="sud";//Record2.value("dxf_50").toDouble();
 					//New_DXF_Input.QET_text=Record2.value("dxf_1").toString();
@@ -567,14 +569,14 @@ QString elmt_blocks::Insert_Block()
 					//New_DXF_Input.QET_text_style=Record2.value("dxf_7").toString();
 
 
-					New_DXF_Ellipse.QET_antialias="false";
-					New_DXF_Ellipse.QET_line_style="normal";
-					New_DXF_Ellipse.QET_line_weight="thin";
-					New_DXF_Ellipse.QET_filling="none";
+                    New_DXF_Ellipse2.QET_antialias="false";
+                    New_DXF_Ellipse2.QET_line_style="normal";
+                    New_DXF_Ellipse2.QET_line_weight="thin";
+                    New_DXF_Ellipse2.QET_filling="none";
 					//New_DXF_Ellipse.QET_rotate="true";
 					//New_DXF_Input.QET_tag="label";
 
-					New_DXF_Ellipse.QET_color=DXF_main_base[0].QDXF_block_ellipse_color;
+                    New_DXF_Ellipse2.QET_color=DXF_main_base[0].QDXF_block_ellipse_color;
 
                     if (stringsize > QSTRING_max_lengt)
                     {
@@ -587,7 +589,7 @@ QString elmt_blocks::Insert_Block()
                     }
                     else
                     {
-                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_Ellipse.Create_ellipse());
+                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_Ellipse2.Create_ellipse());
                     }
 					//DXF_Block_Value.append(New_DXF_Ellipse.Create_ellipse());
 				}
@@ -596,34 +598,34 @@ QString elmt_blocks::Insert_Block()
 				{
                     for( int xx = 0;xx < QET_L_POLYLINE;xx++ )
                     {
-                        New_DXF_Polyline.QET_x[xx]=0.0;
-                        New_DXF_Polyline.QET_y[xx]=0.0;
+                        New_DXF_Polyline2.QET_x[xx]=0.0;
+                        New_DXF_Polyline2.QET_y[xx]=0.0;
                     }
 
-					New_DXF_Polyline.QET_layer=Record3.value("dxf_8").toString();
-					New_DXF_Polyline.QET_ltype=Record3.value("dxf_6").toString();
+                    New_DXF_Polyline2.QET_layer=Record3.value("dxf_8").toString();
+                    New_DXF_Polyline2.QET_ltype=Record3.value("dxf_6").toString();
 					//New_DXF_Polyline.QET_handle=QET_handle;
 					//New_DXF_Polyline.QET_handle.append(":");
 					//New_DXF_Polyline.QET_handle.append(Record3.value("dxf_5").toString());
-					New_DXF_Polyline.QET_handle=Record3.value("dxf_5").toString();
-					New_DXF_Polyline.QET_block_name=QET_block_name;
-					New_DXF_Polyline.QET_block_name_id=QET_block_name_id;
-					New_DXF_Polyline.QET_softID=Record3.value("dxf_330").toString();
+                    New_DXF_Polyline2.QET_handle=Record3.value("dxf_5").toString();
+                    New_DXF_Polyline2.QET_block_name=QET_block_name;
+                    New_DXF_Polyline2.QET_block_name_id=QET_block_name_id;
+                    New_DXF_Polyline2.QET_softID=Record3.value("dxf_330").toString();
 
-					New_DXF_Polyline.QET_antialias="false";
-					New_DXF_Polyline.QET_line_style="normal";
-					New_DXF_Polyline.QET_line_weight="thin";
-					New_DXF_Polyline.QET_filling="none";
+                    New_DXF_Polyline2.QET_antialias="false";
+                    New_DXF_Polyline2.QET_line_style="normal";
+                    New_DXF_Polyline2.QET_line_weight="thin";
+                    New_DXF_Polyline2.QET_filling="none";
 
-					New_DXF_Polyline.QET_color=DXF_main_base[0].QDXF_block_polyline_color;
+                    New_DXF_Polyline2.QET_color=DXF_main_base[0].QDXF_block_polyline_color;
 
 					if (Record3.value("dxf_70").toInt()==1)
 					{
-						New_DXF_Polyline.QET_closed="true";
+                        New_DXF_Polyline2.QET_closed="true";
 					}
 					else
 					{
-						New_DXF_Polyline.QET_closed="false";
+                        New_DXF_Polyline2.QET_closed="false";
 					}
 
 					end_seqend=0;
@@ -641,8 +643,8 @@ QString elmt_blocks::Insert_Block()
 
 							if (Record4.value("Command").toString()=="VERTEX" and Record4.value("Command_count").toInt()==0)
 							{
-								New_DXF_Polyline.QET_x[count_vertex]=(Record4.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
-								New_DXF_Polyline.QET_y[count_vertex]=(Record4.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
+                                New_DXF_Polyline2.QET_x[count_vertex]=(Record4.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
+                                New_DXF_Polyline2.QET_y[count_vertex]=(Record4.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
 								count_vertex++;
 
 							}
@@ -668,7 +670,7 @@ QString elmt_blocks::Insert_Block()
 
 					}
 
-					New_DXF_Polyline.segments=count_vertex;
+                    New_DXF_Polyline2.segments=count_vertex;
 
                     if (stringsize > QSTRING_max_lengt)
                     {
@@ -681,7 +683,7 @@ QString elmt_blocks::Insert_Block()
                     }
                     else
                     {
-                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_Polyline.Create_polyline());
+                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_Polyline2.Create_polyline());
                     }
 					//DXF_Block_Value.append(New_DXF_Polyline.Create_polyline());
 
@@ -728,7 +730,7 @@ QString elmt_blocks::Insert_Block()
 
 					New_DXF_blocks2.FromBlock=Record3.value("dxf_2").toString();
 
-                    New_DXF_blocks2.Insert_Block();
+                    New_DXF_blocks2.Insert_Block_1();
 
 					//Logtext.append(New_DXF_blocks2.Insert_Block());
 					//DXF_Entities_List.DXF_Result.append(New_DXF_blocks2.Insert_Block());
@@ -739,40 +741,40 @@ QString elmt_blocks::Insert_Block()
 				{
                     for( int xx = 0;xx < QET_L_POLYLINE;xx++ )
                     {
-                        New_DXF_LWPolyline.QET_x[xx]=0.0;
-                        New_DXF_LWPolyline.QET_y[xx]=0.0;
+                        New_DXF_LWPolyline2.QET_x[xx]=0.0;
+                        New_DXF_LWPolyline2.QET_y[xx]=0.0;
                     }
 
-					New_DXF_LWPolyline.QET_layer=Record3.value("dxf_8").toString();
-					New_DXF_LWPolyline.QET_ltype=Record3.value("dxf_6").toString();
-					New_DXF_LWPolyline.QET_handle=Record3.value("dxf_5").toString();
-					New_DXF_LWPolyline.QET_softID=Record3.value("dxf_330").toString();
+                    New_DXF_LWPolyline2.QET_layer=Record3.value("dxf_8").toString();
+                    New_DXF_LWPolyline2.QET_ltype=Record3.value("dxf_6").toString();
+                    New_DXF_LWPolyline2.QET_handle=Record3.value("dxf_5").toString();
+                    New_DXF_LWPolyline2.QET_softID=Record3.value("dxf_330").toString();
 
-					New_DXF_LWPolyline.QET_antialias="false";
-					New_DXF_LWPolyline.QET_line_style="normal";
-					New_DXF_LWPolyline.QET_line_weight="thin";
-					New_DXF_LWPolyline.QET_filling="none";
+                    New_DXF_LWPolyline2.QET_antialias="false";
+                    New_DXF_LWPolyline2.QET_line_style="normal";
+                    New_DXF_LWPolyline2.QET_line_weight="thin";
+                    New_DXF_LWPolyline2.QET_filling="none";
 
-					New_DXF_LWPolyline.QET_layer=Record3.value("dxf_8").toString();
-					New_DXF_LWPolyline.QET_ltype=Record3.value("dxf_6").toString();
+                    New_DXF_LWPolyline2.QET_layer=Record3.value("dxf_8").toString();
+                    New_DXF_LWPolyline2.QET_ltype=Record3.value("dxf_6").toString();
 					//New_DXF_LWPolyline.QET_handle=QET_handle;
 					//New_DXF_LWPolyline.QET_handle.append(":");
 					//New_DXF_LWPolyline.QET_handle.append(Record3.value("dxf_5").toString());
-					New_DXF_LWPolyline.QET_handle=Record3.value("dxf_5").toString();
-					New_DXF_LWPolyline.QET_block_name=QET_block_name;
-					New_DXF_LWPolyline.QET_block_name_id=QET_block_name_id;
-					New_DXF_LWPolyline.QET_softID=Record3.value("dxf_330").toString();
+                    New_DXF_LWPolyline2.QET_handle=Record3.value("dxf_5").toString();
+                    New_DXF_LWPolyline2.QET_block_name=QET_block_name;
+                    New_DXF_LWPolyline2.QET_block_name_id=QET_block_name_id;
+                    New_DXF_LWPolyline2.QET_softID=Record3.value("dxf_330").toString();
 
 
-					New_DXF_LWPolyline.QET_color=DXF_main_base[0].QDXF_block_polyline_color;
+                    New_DXF_LWPolyline2.QET_color=DXF_main_base[0].QDXF_block_polyline_color;
 
 					if (Record3.value("dxf_70").toInt()==1)
 					{
-						New_DXF_LWPolyline.QET_closed="true";
+                        New_DXF_LWPolyline2.QET_closed="true";
 					}
 					else
 					{
-						New_DXF_LWPolyline.QET_closed="false";
+                        New_DXF_LWPolyline2.QET_closed="false";
 					}
 
 					end_lwpoly=0;
@@ -802,8 +804,8 @@ QString elmt_blocks::Insert_Block()
 
 							if (Record3.value("Command").toString()=="LWPOLYLINE" and max_vertex<QET_L_POLYLINE)
 							{
-								New_DXF_LWPolyline.QET_x[count_vertex]=(Record4.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
-								New_DXF_LWPolyline.QET_y[count_vertex]=(Record4.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
+                                New_DXF_LWPolyline2.QET_x[count_vertex]=(Record4.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
+                                New_DXF_LWPolyline2.QET_y[count_vertex]=(Record4.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
 								count_vertex++;
 
 							}
@@ -829,7 +831,7 @@ QString elmt_blocks::Insert_Block()
 
 					}
 
-					New_DXF_LWPolyline.segments=count_vertex;
+                    New_DXF_LWPolyline2.segments=count_vertex;
 
                     if (stringsize > QSTRING_max_lengt)
                     {
@@ -842,7 +844,7 @@ QString elmt_blocks::Insert_Block()
                     }
                     else
                     {
-                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_LWPolyline.Create_polyline());
+                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_LWPolyline2.Create_polyline());
                     }
 					//DXF_Block_Value.append(New_DXF_LWPolyline.Create_polyline());
 
@@ -854,37 +856,37 @@ QString elmt_blocks::Insert_Block()
 				{
                     for( int xx = 0;xx < QET_L_POLYLINE;xx++ )
                     {
-                        New_DXF_SOLID.QET_x[xx]=0.0;
-                        New_DXF_SOLID.QET_y[xx]=0.0;
+                        New_DXF_SOLID2.QET_x[xx]=0.0;
+                        New_DXF_SOLID2.QET_y[xx]=0.0;
                     }
-					New_DXF_SOLID.QET_layer=Record3.value("dxf_8").toString();
-					New_DXF_SOLID.QET_ltype=Record3.value("dxf_6").toString();
-					New_DXF_SOLID.QET_handle=Record3.value("dxf_5").toString();
-					New_DXF_SOLID.QET_block_name=QET_block_name;
-					New_DXF_SOLID.QET_block_name_id=QET_block_name_id;
-					New_DXF_SOLID.QET_softID=Record3.value("dxf_330").toString();
+                    New_DXF_SOLID2.QET_layer=Record3.value("dxf_8").toString();
+                    New_DXF_SOLID2.QET_ltype=Record3.value("dxf_6").toString();
+                    New_DXF_SOLID2.QET_handle=Record3.value("dxf_5").toString();
+                    New_DXF_SOLID2.QET_block_name=QET_block_name;
+                    New_DXF_SOLID2.QET_block_name_id=QET_block_name_id;
+                    New_DXF_SOLID2.QET_softID=Record3.value("dxf_330").toString();
 
-					New_DXF_SOLID.QET_antialias="false";
-					New_DXF_SOLID.QET_line_style="normal";
-					New_DXF_SOLID.QET_line_weight="thin";
-					New_DXF_SOLID.QET_filling="red";
+                    New_DXF_SOLID2.QET_antialias="false";
+                    New_DXF_SOLID2.QET_line_style="normal";
+                    New_DXF_SOLID2.QET_line_weight="thin";
+                    New_DXF_SOLID2.QET_filling="red";
 
-					New_DXF_SOLID.QET_layer=Record3.value("dxf_8").toString();
-					New_DXF_SOLID.QET_ltype=Record3.value("dxf_6").toString();
+                    New_DXF_SOLID2.QET_layer=Record3.value("dxf_8").toString();
+                    New_DXF_SOLID2.QET_ltype=Record3.value("dxf_6").toString();
 					//New_DXF_SOLID.QET_handle=QET_handle;
 					//New_DXF_SOLID.QET_handle.append(":");
 					//New_DXF_SOLID.QET_handle.append(Record3.value("dxf_5").toString());
-					New_DXF_SOLID.QET_softID=Record3.value("dxf_330").toString();
+                    New_DXF_SOLID2.QET_softID=Record3.value("dxf_330").toString();
 
-					New_DXF_SOLID.QET_color=DXF_main_base[0].QDXF_block_solid_color;
+                    New_DXF_SOLID2.QET_color=DXF_main_base[0].QDXF_block_solid_color;
 
 					if (Record2.value("dxf_70").toInt()==1)
 					{
-						New_DXF_SOLID.QET_closed="true";
+                        New_DXF_SOLID2.QET_closed="true";
 					}
 					else
 					{
-						New_DXF_SOLID.QET_closed="false";
+                        New_DXF_SOLID2.QET_closed="false";
 					}
 
 					end_lwpoly=0;
@@ -903,37 +905,36 @@ QString elmt_blocks::Insert_Block()
 						Logtext.append(" \n");
 					}
 
-					/*while (end_lwpoly==0 and count_vertex<max_vertex+1)
+                    while (end_lwpoly==0 and count_vertex<max_vertex+1)
 					{
-						NewQuery.next();
-						QSqlRecord Record3=NewQuery.record();
-						Recordvalue2=Record3.value("Command").toString();
-						if (Record3.value("Command").toString()=="SOLID" and max_vertex<QET_L_POLYLINE)
+                        NewQueryBlock.next();
+                        QSqlRecord Record3=NewQueryBlock.record();
+                        Recordvalue2=Record3.value("Command").toString();
+                        if (Record3.value("Command").toString()=="SOLID" and max_vertex<QET_L_POLYLINE)
+                        {
+                            New_DXF_SOLID2.QET_x[0]=(Record3.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
+                            New_DXF_SOLID2.QET_y[0]=(Record3.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
 
+                            New_DXF_SOLID2.QET_x[1]=(Record3.value("dxf_11").toDouble()*Block_scale_x)+Block_X;
+                            New_DXF_SOLID2.QET_y[1]=(Record3.value("dxf_21").toDouble()*Block_scale_y)+Block_Y;
 
-					{*/
-							New_DXF_SOLID.QET_x[0]=(Record3.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
-							New_DXF_SOLID.QET_y[0]=(Record3.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
+                            New_DXF_SOLID2.QET_x[3]=(Record3.value("dxf_12").toDouble()*Block_scale_x)+Block_X;
+                            New_DXF_SOLID2.QET_y[3]=(Record3.value("dxf_22").toDouble()*Block_scale_y)+Block_Y;
 
-							New_DXF_SOLID.QET_x[1]=(Record3.value("dxf_11").toDouble()*Block_scale_x)+Block_X;
-							New_DXF_SOLID.QET_y[1]=(Record3.value("dxf_21").toDouble()*Block_scale_y)+Block_Y;
-
-							New_DXF_SOLID.QET_x[3]=(Record3.value("dxf_12").toDouble()*Block_scale_x)+Block_X;
-							New_DXF_SOLID.QET_y[3]=(Record3.value("dxf_22").toDouble()*Block_scale_y)+Block_Y;
-
-							New_DXF_SOLID.QET_x[2]=(Record3.value("dxf_13").toDouble()*Block_scale_x)+Block_X;
-							New_DXF_SOLID.QET_y[2]=(Record3.value("dxf_23").toDouble()*Block_scale_y)+Block_Y;
+                            New_DXF_SOLID2.QET_x[2]=(Record3.value("dxf_13").toDouble()*Block_scale_x)+Block_X;
+                            New_DXF_SOLID2.QET_y[2]=(Record3.value("dxf_23").toDouble()*Block_scale_y)+Block_Y;
 							count_vertex=4;
+                        }
 
-						/*}
+
 						if (count_vertex>max_vertex)
 						{
 							end_lwpoly=1;
 						}
 
-					}*/
+                    }
 
-					New_DXF_SOLID.segments=count_vertex;
+                    New_DXF_SOLID2.segments=count_vertex;
 
                     if (stringsize > QSTRING_max_lengt)
                     {
@@ -946,7 +947,7 @@ QString elmt_blocks::Insert_Block()
                     }
                     else
                     {
-                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_SOLID.Create_polyline());
+                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_SOLID2.Create_polyline());
                     }
 					//DXF_Block_Value.append(New_DXF_SOLID.Create_polyline());
 
@@ -957,40 +958,40 @@ QString elmt_blocks::Insert_Block()
 				{
                     for( int xx = 0;xx < QET_L_POLYLINE;xx++ )
                     {
-                        New_DXF_LWPolyline.QET_x[xx]=0.0;
-                        New_DXF_LWPolyline.QET_y[xx]=0.0;
+                        New_DXF_LWPolyline2.QET_x[xx]=0.0;
+                        New_DXF_LWPolyline2.QET_y[xx]=0.0;
                     }
 
-					New_DXF_LWPolyline.QET_layer=Record3.value("dxf_8").toString();
-					New_DXF_LWPolyline.QET_ltype=Record3.value("dxf_6").toString();
-					New_DXF_LWPolyline.QET_handle=Record3.value("dxf_5").toString();
-					New_DXF_LWPolyline.QET_block_name=QET_block_name;
-					New_DXF_LWPolyline.QET_block_name_id=QET_block_name_id;
-					New_DXF_LWPolyline.QET_softID=Record3.value("dxf_330").toString();
+                    New_DXF_LWPolyline2.QET_layer=Record3.value("dxf_8").toString();
+                    New_DXF_LWPolyline2.QET_ltype=Record3.value("dxf_6").toString();
+                    New_DXF_LWPolyline2.QET_handle=Record3.value("dxf_5").toString();
+                    New_DXF_LWPolyline2.QET_block_name=QET_block_name;
+                    New_DXF_LWPolyline2.QET_block_name_id=QET_block_name_id;
+                    New_DXF_LWPolyline2.QET_softID=Record3.value("dxf_330").toString();
 
-					New_DXF_LWPolyline.QET_antialias="false";
-					New_DXF_LWPolyline.QET_line_style="normal";
-					New_DXF_LWPolyline.QET_line_weight="thin";
-					New_DXF_LWPolyline.QET_filling="none";
+                    New_DXF_LWPolyline2.QET_antialias="false";
+                    New_DXF_LWPolyline2.QET_line_style="normal";
+                    New_DXF_LWPolyline2.QET_line_weight="thin";
+                    New_DXF_LWPolyline2.QET_filling="none";
 
-					New_DXF_LWPolyline.QET_layer=Record3.value("dxf_8").toString();
-					New_DXF_LWPolyline.QET_ltype=Record3.value("dxf_6").toString();
+                    New_DXF_LWPolyline2.QET_layer=Record3.value("dxf_8").toString();
+                    New_DXF_LWPolyline2.QET_ltype=Record3.value("dxf_6").toString();
 					//New_DXF_LWPolyline.QET_handle=QET_handle;
 					//New_DXF_LWPolyline.QET_handle.append(":");
 					//New_DXF_LWPolyline.QET_handle.append(Record3.value("dxf_5").toString());
 					//New_DXF_LWPolyline.QET_handle=Record3.value("dxf_5").toString();
-					New_DXF_LWPolyline.QET_softID=Record3.value("dxf_330").toString();
+                    New_DXF_LWPolyline2.QET_softID=Record3.value("dxf_330").toString();
 
 
-                    New_DXF_LWPolyline.QET_color=DXF_main_base[0].QDXF_block_polyline_color;
+                    New_DXF_LWPolyline2.QET_color=DXF_main_base[0].QDXF_block_polyline_color;
 
 					if (Record3.value("dxf_70").toInt()==1)
 					{
-						New_DXF_LWPolyline.QET_closed="true";
+                        New_DXF_LWPolyline2.QET_closed="true";
 					}
 					else
 					{
-						New_DXF_LWPolyline.QET_closed="false";
+                        New_DXF_LWPolyline2.QET_closed="false";
 					}
 
 					end_lwpoly=0;
@@ -1000,8 +1001,8 @@ QString elmt_blocks::Insert_Block()
 
 					max_vertex=Record3.value("dxf_73").toInt();
 
-					New_DXF_LWPolyline.QET_x[count_vertex]=(Record3.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
-					New_DXF_LWPolyline.QET_y[count_vertex]=(Record3.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
+                    New_DXF_LWPolyline2.QET_x[count_vertex]=(Record3.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
+                    New_DXF_LWPolyline2.QET_y[count_vertex]=(Record3.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
 					count_vertex++;
 
 					if (max_vertex >=QET_L_POLYLINE)
@@ -1027,8 +1028,8 @@ QString elmt_blocks::Insert_Block()
 
 							if (Record3.value("Command").toString()=="SPLINE" and max_vertex<QET_L_POLYLINE)
 							{
-								New_DXF_LWPolyline.QET_x[count_vertex]=(Record4.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
-								New_DXF_LWPolyline.QET_y[count_vertex]=(Record4.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
+                                New_DXF_LWPolyline2.QET_x[count_vertex]=(Record4.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
+                                New_DXF_LWPolyline2.QET_y[count_vertex]=(Record4.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
 								count_vertex++;
 
 							}
@@ -1054,7 +1055,7 @@ QString elmt_blocks::Insert_Block()
 
 					}
 
-					New_DXF_LWPolyline.segments=count_vertex;
+                    New_DXF_LWPolyline2.segments=count_vertex;
 
                     if (stringsize > QSTRING_max_lengt)
                     {
@@ -1067,7 +1068,7 @@ QString elmt_blocks::Insert_Block()
                     }
                     else
                     {
-                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_LWPolyline.Create_polyline());
+                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_LWPolyline2.Create_polyline());
                     }
 					//DXF_Block_Value.append(New_DXF_LWPolyline.Create_polyline());
 
@@ -1080,32 +1081,32 @@ QString elmt_blocks::Insert_Block()
 						<text x="-7" y="-8" size="3" text="HC-SR04"/>
 						<text x="-50" y="-45" text="Test" color="white" size="9"/>*/
 
-					New_DXF_Text.QET_x=(Record3.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
+                    New_DXF_Text2.QET_x=(Record3.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
 					//New_DXF_Text.QET_x=(Record3.value("dxf_10").toDouble())+Block_X;
-					New_DXF_Text.QET_y=(Record3.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
+                    New_DXF_Text2.QET_y=(Record3.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
 					//New_DXF_Text.QET_y=(Record3.value("dxf_20").toDouble())+Block_Y;
 
-					New_DXF_Text.QET_rotation=Record3.value("dxf_50").toDouble();
-					New_DXF_Text.QET_text=Record3.value("dxf_1").toString();
-					New_DXF_Text.QET_size=Record3.value("dxf_40").toDouble();
-					New_DXF_Text.QET_text_style=Record3.value("dxf_7").toString();
+                    New_DXF_Text2.QET_rotation=Record3.value("dxf_50").toDouble();
+                    New_DXF_Text2.QET_text=Record3.value("dxf_1").toString();
+                    New_DXF_Text2.QET_size=Record3.value("dxf_40").toDouble();
+                    New_DXF_Text2.QET_text_style=Record3.value("dxf_7").toString();
 
-					New_DXF_Text.QET_layer=Record3.value("dxf_8").toString();
-					New_DXF_Text.QET_ltype=Record3.value("dxf_6").toString();
+                    New_DXF_Text2.QET_layer=Record3.value("dxf_8").toString();
+                    New_DXF_Text2.QET_ltype=Record3.value("dxf_6").toString();
 					//New_DXF_Text.QET_handle=QET_handle;
 					//New_DXF_Text.QET_handle.append(":");
 					//New_DXF_Text.QET_handle.append(Record3.value("dxf_5").toString());
-					New_DXF_Text.QET_handle=Record3.value("dxf_5").toString();
-					New_DXF_Text.QET_block_name=QET_block_name;
-					New_DXF_Text.QET_block_name_id=QET_block_name_id;
-					New_DXF_Text.QET_softID=Record3.value("dxf_330").toString();
+                    New_DXF_Text2.QET_handle=Record3.value("dxf_5").toString();
+                    New_DXF_Text2.QET_block_name=QET_block_name;
+                    New_DXF_Text2.QET_block_name_id=QET_block_name_id;
+                    New_DXF_Text2.QET_softID=Record3.value("dxf_330").toString();
 
 
 					//New_DXF_Text.QET_antialias="false";
 					//New_DXF_Text.QET_line_style="normal";
 					//New_DXF_Text.QET_line_weight="thin";
 					//New_DXF_Text.QET_filling="none";
-                    New_DXF_Text.QET_color=DXF_main_base[0].QDXF_block_text_color;
+                    New_DXF_Text2.QET_color=DXF_main_base[0].QDXF_block_text_color;
 
                     if (stringsize > QSTRING_max_lengt)
                     {
@@ -1118,7 +1119,7 @@ QString elmt_blocks::Insert_Block()
                     }
                     else
                     {
-                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_Text.Create_text());
+                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_Text2.Create_text());
                     }
 					//DXF_Block_Value.append(New_DXF_Text.Create_text());
 				}
@@ -1127,42 +1128,42 @@ QString elmt_blocks::Insert_Block()
 				{
                     for( int xx = 0;xx < QET_L_POLYLINE;xx++ )
                     {
-                        New_DXF_LWPolyline.QET_x[xx]=0.0;
-                        New_DXF_LWPolyline.QET_y[xx]=0.0;
+                        New_DXF_LWPolyline2.QET_x[xx]=0.0;
+                        New_DXF_LWPolyline2.QET_y[xx]=0.0;
                     }
 
 
 
-					New_DXF_LWPolyline.QET_layer=Record3.value("dxf_8").toString();
-					New_DXF_LWPolyline.QET_ltype=Record3.value("dxf_6").toString();
-					New_DXF_LWPolyline.QET_handle=Record3.value("dxf_5").toString();
-					New_DXF_LWPolyline.QET_block_name=QET_block_name;
-					New_DXF_LWPolyline.QET_block_name_id=QET_block_name_id;
-					New_DXF_LWPolyline.QET_softID=Record3.value("dxf_330").toString();
+                    New_DXF_LWPolyline2.QET_layer=Record3.value("dxf_8").toString();
+                    New_DXF_LWPolyline2.QET_ltype=Record3.value("dxf_6").toString();
+                    New_DXF_LWPolyline2.QET_handle=Record3.value("dxf_5").toString();
+                    New_DXF_LWPolyline2.QET_block_name=QET_block_name;
+                    New_DXF_LWPolyline2.QET_block_name_id=QET_block_name_id;
+                    New_DXF_LWPolyline2.QET_softID=Record3.value("dxf_330").toString();
 
-					New_DXF_LWPolyline.QET_antialias="false";
-					New_DXF_LWPolyline.QET_line_style="normal";
-					New_DXF_LWPolyline.QET_line_weight="thin";
-					New_DXF_LWPolyline.QET_filling="yellow";
+                    New_DXF_LWPolyline2.QET_antialias="false";
+                    New_DXF_LWPolyline2.QET_line_style="normal";
+                    New_DXF_LWPolyline2.QET_line_weight="thin";
+                    New_DXF_LWPolyline2.QET_filling="yellow";
 
-					New_DXF_LWPolyline.QET_layer=Record3.value("dxf_8").toString();
-					New_DXF_LWPolyline.QET_ltype=Record3.value("dxf_6").toString();
+                    New_DXF_LWPolyline2.QET_layer=Record3.value("dxf_8").toString();
+                    New_DXF_LWPolyline2.QET_ltype=Record3.value("dxf_6").toString();
 					//New_DXF_LWPolyline.QET_handle=QET_handle;
 					//New_DXF_LWPolyline.QET_handle.append(":");
 					//New_DXF_LWPolyline.QET_handle.append(Record3.value("dxf_5").toString());
 					//New_DXF_LWPolyline.QET_handle=Record3.value("dxf_5").toString();
-					New_DXF_LWPolyline.QET_softID=Record3.value("dxf_330").toString();
+                    New_DXF_LWPolyline2.QET_softID=Record3.value("dxf_330").toString();
 
 
-					New_DXF_LWPolyline.QET_color="yellow";//DXF_main_base[0].QDXF_block_polyline_color;
+                    New_DXF_LWPolyline2.QET_color="yellow";//DXF_main_base[0].QDXF_block_polyline_color;
 
 					if (Record3.value("dxf_70").toInt()==1)
 					{
-						New_DXF_LWPolyline.QET_closed="true";
+                        New_DXF_LWPolyline2.QET_closed="true";
 					}
 					else
 					{
-						New_DXF_LWPolyline.QET_closed="false";
+                        New_DXF_LWPolyline2.QET_closed="false";
 					}
 
 					end_lwpoly=0;
@@ -1208,8 +1209,8 @@ QString elmt_blocks::Insert_Block()
 
                                 else
                                 {
-                                    New_DXF_LWPolyline.QET_x[count_vertex]=(Record4.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
-                                    New_DXF_LWPolyline.QET_y[count_vertex]=(Record4.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
+                                    New_DXF_LWPolyline2.QET_x[count_vertex]=(Record4.value("dxf_10").toDouble()*Block_scale_x)+Block_X;
+                                    New_DXF_LWPolyline2.QET_y[count_vertex]=(Record4.value("dxf_20").toDouble()*Block_scale_y)+Block_Y;
                                     count_vertex++;
                                 }
 
@@ -1222,8 +1223,8 @@ QString elmt_blocks::Insert_Block()
                                 }
                                 else
                                 {
-                                    New_DXF_LWPolyline.QET_x[count_vertex]=Record4.value("dxf_11").toDouble();
-                                    New_DXF_LWPolyline.QET_y[count_vertex]=Record4.value("dxf_21").toDouble();
+                                    New_DXF_LWPolyline2.QET_x[count_vertex]=Record4.value("dxf_11").toDouble();
+                                    New_DXF_LWPolyline2.QET_y[count_vertex]=Record4.value("dxf_21").toDouble();
                                     count_vertex++;
                                 }
 
@@ -1251,7 +1252,7 @@ QString elmt_blocks::Insert_Block()
 
 					}
 
-					New_DXF_LWPolyline.segments=count_vertex;
+                    New_DXF_LWPolyline2.segments=count_vertex;
 
                     if (stringsize > QSTRING_max_lengt)
                     {
@@ -1264,7 +1265,7 @@ QString elmt_blocks::Insert_Block()
                     }
                     else
                     {
-                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_LWPolyline.Create_polyline());
+                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_LWPolyline2.Create_polyline());
                     }
 					//DXF_Block_Value.append(New_DXF_LWPolyline.Create_polyline());
 
