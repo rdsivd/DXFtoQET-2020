@@ -61,6 +61,7 @@ class BaseELMT : public QWidget // QMainWindow
 	QString DefinitionStart();
 	QString DefinitionEnd();
 	QString Uuid();
+    QString Uuid2();
 	QString Names();
 	QString KindInformation();
 	QString Informations();

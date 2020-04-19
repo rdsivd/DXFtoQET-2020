@@ -6528,7 +6528,7 @@ void DXFtoQET3DB::on_Create_QET_ELMT_clicked()
 
 	ui->Procesing_dxf->clear();
 
-    ui->MainTab->setCurrentIndex(0);
+    ui->MainTab->setCurrentIndex(1);
 	ui->MainTab->repaint();
 
 
@@ -6631,7 +6631,7 @@ void DXFtoQET3DB::on_Create_QET_ELMT_clicked()
 	NewBase.ELMT_converter_version="V3.0 DB";
 	NewBase.ELMT_converter_by="Ronny Desmedt";
 
-	ui->dxf_log->insertPlainText("Add UUID names, kindinformation, information ... ELMT file \n");
+    ui->dxf_log->appendPlainText("Add UUID names, kindinformation, information ... ELMT file \n");
 	ui->dxf_log->moveCursor(QTextCursor::End);
 	ui->dxf_log->repaint();
 
@@ -6778,15 +6778,15 @@ void DXFtoQET3DB::on_Create_QET_ELMT_clicked()
 
 	ui->ELMT_Result->clear();
 
-	//create entities
-	ui->dxf_log->insertPlainText(NewEntity.Get_Entities(Filename_db));
+    //create entities
+    ui->dxf_log->appendPlainText(NewEntity.Get_Entities(Filename_db));
 	ui->dxf_log->moveCursor(QTextCursor::End);
 	ui->dxf_log->repaint();
 
     NewEntity.Close_SQL_DB(Filename_db);
 
 	Signal_elmt1.clear();
-    Signal_elmt1.append("append entitis");
+    Signal_elmt1.append("append entities");
 
     emit send_elmt(Signal_elmt1);
 
@@ -6816,7 +6816,7 @@ void DXFtoQET3DB::on_Create_QET_ELMT_clicked()
 
     emit send_elmt(Signal_elmt1);
 
-	Signal_log1.clear();
+    /*Signal_log1.clear();
 	Signal_log1.append("DXF file converted to ELMT file");
 	Signal_log1.append("\n");
 	Signal_log1.append("============================================================================\n");
@@ -6825,7 +6825,7 @@ void DXFtoQET3DB::on_Create_QET_ELMT_clicked()
 	Signal_log1.append("============================================================================");
     Signal_log1.append("\n");
 
-	emit send_log(Signal_log1);
+    emit send_log(Signal_log1);*/
 
 
 

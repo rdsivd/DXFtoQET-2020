@@ -95,7 +95,27 @@ QString BaseELMT::Uuid()
 	return Result;
 
 }
+QString BaseELMT::Uuid2()
+{
 
+    Result="";
+
+    /*  <uuid uuid="{687262D2-B8A1-4CD6-B56F-4547577EFD01}"/> */
+
+    Uuidstring=QUuid::createUuid();
+
+    //Result.append("<uuid");
+    //Result.append(" uuid=");
+    Result.append(QChar(34));
+    Result.append(Uuidstring.toString());
+    Result.append(QChar(34));
+
+    //Result.append(" />");
+    //Result.append('\n');
+
+    return Result;
+
+}
 QString BaseELMT::Names()
 {
 

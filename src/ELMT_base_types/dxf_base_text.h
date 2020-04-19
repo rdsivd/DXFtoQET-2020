@@ -8,6 +8,7 @@
 #include "src/DXF_control/dxf_layer_control.h"
 #include "src/DXF_control/dxf_ltype_control.h"
 #include "src/DXF_control/dxf_text_control.h"
+#include "src/ELMT_base/baseelmt.h"
 
 class dxf_base_text : public QWidget // QMainWindow
 {

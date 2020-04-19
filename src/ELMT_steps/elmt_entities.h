@@ -24,6 +24,7 @@
 #include "src/ELMT_base_types/dxf_base_polyline.h"
 #include "src/ELMT_steps/elmt_blocks.h"
 
+
 class elmt_entities : public QWidget
 {
 	Q_OBJECT
