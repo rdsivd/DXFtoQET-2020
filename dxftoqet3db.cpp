@@ -151,6 +151,8 @@ void DXFtoQET3DB::on_OpenFile_clicked()
 		//ui->elmt_lang_fr->setText(FileName);
 
 		QFile file(DXF_main_base[0].dxf_filepath);
+        QFileInfo info1(DXF_main_base[0].dxf_filepath);
+
 		if (!file.open(QFile::ReadOnly | QFile::Text))
 		{
 			QMessageBox::warning(this, tr("Application"),
@@ -169,9 +171,17 @@ void DXFtoQET3DB::on_OpenFile_clicked()
 		emit send_log(Signal_log1);
 
         DXF_main_base[0].dxf_text_all.clear();
-
-		QTextStream in(&file);
-		DXF_main_base[0].dxf_text_all = in.readAll();
+        int64_t filesize = info1.size();
+        if (filesize > 4500000)
+        {
+            QMessageBox::warning(this, tr("Application"),
+                      tr("file to large file %1:\n%2.").arg(DXF_main_base[0].dxf_filepath).arg(" use smaller file"));
+        }
+        else
+        {
+            QTextStream in(&file);
+            DXF_main_base[0].dxf_text_all = in.readAll();
+        }
 
 		file.close();
 

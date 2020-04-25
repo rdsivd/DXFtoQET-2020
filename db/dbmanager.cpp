@@ -2831,7 +2831,7 @@ void dbManager::dbManager_transfer_dxf(const QString &pathname)
 
 		//Signal_log1.append("\n");
 
-		emit send_log(Signal_log1);
+        //emit send_log(Signal_log1);
 
 		Write_transfer.exec();
 
