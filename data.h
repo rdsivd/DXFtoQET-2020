@@ -20,6 +20,7 @@ struct DXF_base
 	QString dxf_text_all;
 	QString dxf_filetype;
 	QString dxf_savepath; // QET elements path
+    double dxf_scale_plicator;
 
 	QString QDXF_line_color;
 	QString QDXF_circle_color;

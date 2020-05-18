@@ -233,6 +233,7 @@ class DXFtoQET3DB : public QWidget
 		QString Copy_list_item;
 
 		QString ResultELMT;
+        QString Scaler;
 
 		QString Inline0;
 		QStringList Inline1;
@@ -315,6 +316,7 @@ class DXFtoQET3DB : public QWidget
 
 		int32_t Max_Lines;
 		int32_t Count_x1;
+        int32_t index_count_elmt;
 
 		QString Read_Index;
 		QString Read_Code;
@@ -322,6 +324,8 @@ class DXFtoQET3DB : public QWidget
 		QString Read_Section;
 		QString Read_Commando;
 		QString Read_AcadValue;
+
+        QStringList dbelmt;
 
 	public:
 
@@ -428,7 +432,9 @@ class DXFtoQET3DB : public QWidget
 		private slots:
 		void on_Button_Open_DXF_clicked();
 
-		private:
+        void on_CreateDBelmt_clicked();
+
+private:
 		Ui::DXFtoQET3DB *ui;
 };
 

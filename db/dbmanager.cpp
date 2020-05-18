@@ -105,6 +105,10 @@ void dbManager::dbManager_create_tables(const QString &pathname)
 
 	m_db.exec(QsqlString);
 
+    QsqlString="create table elmt_output (Index_count primary key,Elmt_value)";
+
+    m_db.exec(QsqlString);
+
 	QsqlString="create table dxf_header (Index_count primary key,Section";
 	QsqlString.append(", dxfbase, Command, ID_instruction, Command_count");
 	QsqlString.append(", dxf_m1, dxf_m2, dxf_m3, dxf_m4, dxf_m5");
@@ -1255,7 +1259,7 @@ int dbManager::DB_dbManager_added_records(const QString &pathname, int32_t *Max_
 	Signal_log1.append("============================================================================");
 	//Signal_log1.append("\n");
 
-	emit send_log(Signal_log1);
+    //emit send_log(Signal_log1);
 
 	x1=0;
 	//x10=0;
@@ -1399,7 +1403,7 @@ int dbManager::DB_dbManager_added_records(const QString &pathname, int32_t *Max_
 	//Signal_log1.append("============================================================================");
 	Signal_log1.append("\n");
 
-	emit send_log(Signal_log1);
+    //emit send_log(Signal_log1);
 
 	while ((x1<Max_count_lines) and (x1<DXF_codes_set))
 	{
@@ -2700,7 +2704,7 @@ void dbManager::dbManager_load_dxf_list(const QString &pathname)
 	//Query_List.addBindValue(dxf_list1);
 	//Query_List.exec();
 
-	m_db.database().commit();
+    m_db.commit();
 }
 
 QString dbManager::db_split_header(const QString &pathname)
@@ -2842,5 +2846,32 @@ void dbManager::dbManager_transfer_dxf(const QString &pathname)
 
 	m_db.database().commit();
 
+
+}
+
+int32_t dbManager::dbManager_create_elmt(const QStringList &elmt_txt, int32_t Index_count)
+{
+
+    m_db.transaction();
+
+    QSqlQuery Query_List;
+
+    Qsql_List="INSERT INTO elmt_output (Index_count, Elmt_value";
+    Qsql_List.append(")");
+    Qsql_List.append(" VALUES (:Index_count, :Elmt_Value");
+    Qsql_List.append(")");
+
+    Query_List.prepare(Qsql_List);
+
+    Query_List.bindValue(":Index_count", Index_count);
+    Query_List.bindValue(":Elmt_value", elmt_txt);
+
+    Query_List.exec();
+
+    Index_count++;
+    m_db.commit();
+    //m_db.database().commit();
+
+    return Index_count;
 
 }

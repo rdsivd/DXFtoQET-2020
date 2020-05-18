@@ -178,7 +178,7 @@ QString elmt_entities::Get_Entities (QString ELMT_filename)
 	Signal_elmt1.clear();
     Signal_elmt1.append(DXF_Entities_List.DXF_ResultEntitie);
 
-    emit send_elmt(Signal_elmt1);
+    //emit send_elmt(Signal_elmt1);
 
 
 	Signal_waarde1.clear();
@@ -205,7 +205,7 @@ QString elmt_entities::Get_Entities (QString ELMT_filename)
 		Signal_elmt1.clear();
         Signal_elmt1.append(DXF_Entities_List.DXF_ResultEntitie);
 
-        emit send_elmt(Signal_elmt1);
+        //emit send_elmt(Signal_elmt1);
 
 		if (Record2.value("Command_count").toInt()==0)
 		{
@@ -1405,7 +1405,7 @@ QString elmt_entities::Get_Entities (QString ELMT_filename)
             {
                 New_DXF_LWPolyline.segments=count_vertex;
 
-                DXF_Entities_List.DXF_ResultEntitieHatch.append(New_DXF_LWPolyline.Create_polyline());
+                //DXF_Entities_List.DXF_ResultEntitieHatch.append(New_DXF_LWPolyline.Create_polyline());
             }
 
 			Signal_waarde1.clear();

@@ -22,8 +22,8 @@
   <widget class="QTabWidget" name="MainTab">
    <property name="geometry">
     <rect>
-     <x>9</x>
-     <y>77</y>
+     <x>0</x>
+     <y>80</y>
      <width>1037</width>
      <height>547</height>
     </rect>
@@ -38,7 +38,7 @@
     <enum>QTabWidget::West</enum>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>4</number>
    </property>
    <widget class="QWidget" name="Log">
     <attribute name="title">
@@ -356,6 +356,40 @@
       <string>...</string>
      </property>
     </widget>
+    <widget class="QLineEdit" name="dxf_scale_multiplicator">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>100</y>
+       <width>41</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>1</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_12">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>100</y>
+       <width>111</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Scale multipicator :</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="Info">
     <attribute name="title">
@@ -586,6 +620,9 @@ the creation of the ELMT file is faster and depents on the amount of ENTITIES an
       <property name="enabled">
        <bool>true</bool>
       </property>
+      <property name="styleSheet">
+       <string notr="true">border-color: rgb(255, 0, 0);</string>
+      </property>
       <property name="text">
        <string>DXFDB to DB</string>
       </property>
@@ -627,6 +664,27 @@ the creation of the ELMT file is faster and depents on the amount of ENTITIES an
       </property>
      </widget>
     </item>
+    <item row="0" column="3">
+     <widget class="QLabel" name="DXFtoQET2020">
+      <property name="text">
+       <string>DXF to QET 2020</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="6">
+     <widget class="QPushButton" name="CreateDBelmt">
+      <property name="styleSheet">
+       <string notr="true">border-color: rgb(255, 0, 0);
+</string>
+      </property>
+      <property name="text">
+       <string>Create DB elmt</string>
+      </property>
+     </widget>
+    </item>
    </layout>
    <zorder>SavetoELMT</zorder>
    <zorder>Convert_dxf_blocks</zorder>
@@ -637,6 +695,8 @@ the creation of the ELMT file is faster and depents on the amount of ENTITIES an
    <zorder>OpenFile</zorder>
    <zorder>Load_dxf_into_tables</zorder>
    <zorder>Button_Open_DXF</zorder>
+   <zorder>DXFtoQET2020</zorder>
+   <zorder>CreateDBelmt</zorder>
   </widget>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">

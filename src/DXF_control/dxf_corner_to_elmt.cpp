@@ -8,7 +8,20 @@ dxf_corner_to_elmt::dxf_corner_to_elmt(QWidget *parent) : QWidget(parent)
 double dxf_corner_to_elmt::QET_start_angle()
 {
 
-	begin1=450-start_angle;
+/*    if (start_angle >=0 and start_angle<=90)
+    {
+        begin1=90-start_angle;
+
+    }
+    else
+    {
+        begin1=450-start_angle;
+
+    }*/
+
+    begin1=start_angle;
+
+/*	begin1=450-start_angle;
 
 
 	if (begin1>360)
@@ -25,9 +38,14 @@ double dxf_corner_to_elmt::QET_start_angle()
 		{
 			begin0=begin1;
 		}
-	}
+    }*/
 
-	return -(begin0-90);
+    if (begin1 < 0)
+    {
+        begin1 = -begin1;
+    }
+
+    return begin1;
 }
 
 
@@ -35,8 +53,19 @@ double dxf_corner_to_elmt::QET_start_angle()
 
 double dxf_corner_to_elmt::QET_end_angle()
 {
+    /*if (end_angle >=0 and end_angle<=90)
+    {
+        einde0=90-end_angle;
 
-	einde1=450-end_angle;
+    }
+    else
+    {
+        einde0=450-end_angle;
+
+    }*/
+    einde1=end_angle;
+
+/*	einde1=450-end_angle;
 
 	if (einde1>360)
 	{
@@ -52,20 +81,18 @@ double dxf_corner_to_elmt::QET_end_angle()
 		{
 			einde0=einde1;
 		}
-	}
+    }*/
 
 
-	return einde0;
+    return einde1;
 }
-
-;
 
 
 
 
 double dxf_corner_to_elmt::QET_corner_angle()
 {
-	if (begin2>einde2)
+    /*if (begin2>einde2)
 	{
 		N=einde2-begin2;
 	}
@@ -119,15 +146,28 @@ double dxf_corner_to_elmt::QET_corner_angle()
 
 	W=U+V;
 
-	if (W==0)
+    if (W==0.0)
 	{
 		hoek2=-V;
 	}
 	else
 	{
 		hoek2=T;
-	}
+    }*/
 
-	return -hoek2;
+    if (start_angle2 > end_angle2)
+    {
+        hoek2 = (360-start_angle2)+end_angle2;
+    }
+    else
+    {
+        hoek2 = end_angle2-start_angle2;
+    }
 
+    //return -hoek2;
+    if (hoek2<0.0)
+    {
+        hoek2=-hoek2;
+    }
+    return hoek2;
 }

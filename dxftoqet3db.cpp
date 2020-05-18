@@ -94,6 +94,10 @@ void DXFtoQET3DB::on_OpenFile_clicked()
 	ui->dxf_file_path_save->setText(DXF_main_base[0].dxf_savepath);
 	ui->QET_user_symbole_path_save->setText(DXF_main_base[0].dxf_filepath);
 
+    // get scale from user input
+    Scaler = ui->dxf_scale_multiplicator->text();
+    DXF_main_base[0].dxf_scale_plicator =  Scaler.toDouble();
+
 	main_sw1=0;
 	main_sw2=0;
 	main_sw3=0;
@@ -295,6 +299,8 @@ void DXFtoQET3DB::on_OpenFile_clicked()
 
 	emit send_log(Signal_log1);
     mydb.dbActivate(Filename_db);
+
+
 	return;
 }
 
@@ -6967,7 +6973,7 @@ void DXFtoQET3DB::update_elmt(const QString &Waarde_receve2)
 
 void DXFtoQET3DB::update_log(const QString &Waarde_receve3)
 {
-	ui->dxf_log->appendPlainText(Waarde_receve3);
+    ui->dxf_log->setPlainText(Waarde_receve3);
 	ui->dxf_log->moveCursor(QTextCursor::End);
 	ui->dxf_log->repaint();
 }
@@ -7261,4 +7267,415 @@ void DXFtoQET3DB::on_Button_Open_DXF_clicked()
 
 	return;
 
+}
+
+void DXFtoQET3DB::on_CreateDBelmt_clicked()
+{
+
+    index_count_elmt=1;
+
+    Signal_log1.clear();
+    Signal_log1.append("============================================================================");
+    Signal_log1.append(" \n");
+    Signal_log1.append(QTime::currentTime().toString());
+    Signal_log1.append(" - Create file : ");
+    Signal_log1.append(DXF_main_base[0].dxf_savepath + "/" + DXF_main_base[0].dxf_openfile + ".elmt");
+    Signal_log1.append(" \n");
+    Signal_log1.append("============================================================================");
+    Signal_log1.append(" \n");
+    emit send_log(Signal_log1);
+
+    ui->ELMT_Result->clear();
+    DXF_Entities_List.DXF_Result.clear();
+    DXF_Entities_List.DXF_ResultBegin.clear();
+    DXF_Entities_List.DXF_ResultEinde.clear();
+    DXF_Entities_List.DXF_ResultEntitie.clear();
+    DXF_Entities_List.DXF_ResultEntitieLine.clear();
+    DXF_Entities_List.DXF_ResultBlock.clear();
+    DXF_Entities_List.DXF_ResultBlock2.clear();
+    DXF_Entities_List.DXF_ResultEntitiePolyline.clear();
+    DXF_Entities_List.DXF_ResultEntitieLwpolyline.clear();
+    DXF_Entities_List.DXF_ResultEntitieSpline.clear();
+    DXF_Entities_List.DXF_ResultEntitieSolid.clear();
+    DXF_Entities_List.DXF_ResultEntitieHatch.clear();
+
+    Signal_log1.clear();
+    Signal_log1.append("============================================================================");
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result : ");
+    stringsize=DXF_Entities_List.DXF_Result.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result Begin : ");
+    stringsize=DXF_Entities_List.DXF_ResultBegin.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result Entitie: ");
+    stringsize=DXF_Entities_List.DXF_ResultEntitie.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result Entitie Line: ");
+    stringsize=DXF_Entities_List.DXF_ResultEntitieLine.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result Entitie Polyline: ");
+    stringsize=DXF_Entities_List.DXF_ResultEntitiePolyline.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result Entitie Lwpolyline: ");
+    stringsize=DXF_Entities_List.DXF_ResultEntitieLwpolyline.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result Entitie Spline: ");
+    stringsize=DXF_Entities_List.DXF_ResultEntitieSpline.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result Entitie Solid: ");
+    stringsize=DXF_Entities_List.DXF_ResultEntitieSolid.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result Entitie Hatch: ");
+    stringsize=DXF_Entities_List.DXF_ResultEntitieHatch.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result Block: ");
+    stringsize=DXF_Entities_List.DXF_ResultBlock.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result Block 2: ");
+    stringsize=DXF_Entities_List.DXF_ResultBlock2.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result Einde : ");
+    stringsize=DXF_Entities_List.DXF_ResultEinde.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    emit send_log(Signal_log1);
+
+    ui->Procesing_dxf->clear();
+
+    ui->MainTab->setCurrentIndex(1);
+    ui->MainTab->repaint();
+
+
+    DXF_main_base[0].QDXF_arc_color="black";
+    DXF_main_base[0].QDXF_circle_color="black";
+    DXF_main_base[0].QDXF_ellipse_color="black";
+    DXF_main_base[0].QDXF_input_color="black";
+    DXF_main_base[0].QDXF_line_color="black";
+    DXF_main_base[0].QDXF_lwpolyline_color="black";
+    DXF_main_base[0].QDXF_polyline_color="black";
+    DXF_main_base[0].QDXF_rectangel_color="black";
+    DXF_main_base[0].QDXF_terminal_color="black";
+    DXF_main_base[0].QDXF_text_color="black";
+    DXF_main_base[0].QDXF_solid_color="black";
+
+    Signal_log1.clear();
+    Signal_log1.append("============================================================================");
+    Signal_log1.append("\n");
+    Signal_log1.append(QTime::currentTime().toString());
+    Signal_log1.append("\n");
+    Signal_log1.append(" - Start creating elmt : ");
+    Signal_log1.append(QString::number(entities_max_items));
+    Signal_log1.append("\n");
+    Signal_log1.append("============================================================================");
+    Signal_log1.append("\n");
+    emit send_log(Signal_log1);
+
+    Filename_db=DXF_main_base[0].dxf_savepath + "/" +DXF_main_base[0].dxf_openfile;
+    Filename_db.append(".db3");
+
+    Signal_log1.clear();
+    Signal_log1.append("Open : ");
+    Signal_log1.append(Filename_db);
+    Signal_log1.append("\n");
+    Signal_log1.append("Get dxf Header information");
+
+
+    ui->Processing_dxf_file_2->clear();
+    ui->Processing_dxf_file_2->insert(Filename_db);
+
+    emit send_log(Signal_log1);
+
+    stringsize=DXF_Entities_List.DXF_ResultBegin.size();
+    emit send_lines(stringsize);
+
+    ELMT_header_steps NewHeader;
+
+    NewHeader.Open_SQL_DB(Filename_db);
+
+    NewHeader.GetHeader_info(Filename_db);
+
+    //NewHeader.Close_SQL_DB(Filename_db);
+
+    elmt_tables NewLayerTable;
+
+    Signal_log1.clear();
+    Signal_log1.append("Get dxf Layer information");
+
+    emit send_log(Signal_log1);
+
+    //NewLayerTable.Open_SQL_DB(Filename_db);
+
+    ui->dxf_log->insertPlainText(NewLayerTable.Get_Tables_Layers(Filename_db));
+
+    //NewLayerTable.Close_SQL_DB(Filename_db);
+
+    ui->dxf_log->insertPlainText(NewLayerTable.Get_Tables_Layers(Filename_db));
+    ui->dxf_log->moveCursor(QTextCursor::End);
+    ui->dxf_log->repaint();
+
+    ResultELMT="";
+    BaseELMT NewBase;
+
+    Signal_log1.clear();
+    Signal_log1.append("Creating header of ELMT file");
+
+    emit send_log(Signal_log1);
+
+    NewBase.ELMT_definition_width=NewHeader.Calc_Width();
+    NewBase.ELMT_definition_height=NewHeader.Calc_Height();
+    NewBase.ELMT_definition_version="0.51";
+    NewBase.ELMT_definition_hotspot_x=DXF_variable.DXF_INSBASE_X;
+    NewBase.ELMT_definition_hotspot_y=DXF_variable.DXF_INSBASE_Y;
+    NewBase.ELMT_definition_link_type="simple";
+    NewBase.ELMT_definition_orientation="dyyy";
+    NewBase.ELMT_definition_type="element";
+
+    NewBase.ELMT_Name_en="en";
+    NewBase.ELMT_Name_fr="fr";
+
+    NewBase.ELMT_Name_text_en=DXF_main_base[0].dxf_openfile;
+    NewBase.ELMT_Name_text_fr=DXF_main_base[0].dxf_openfile;
+
+    //NewBase.ELMT_kind_name="";
+    //NewBase.ELMT_kind_show="";
+    //NewBase.ELMT_kind_type="";
+
+    NewBase.ELMT_informations_Author="DXF converter";
+    NewBase.ELMT_informations_License="see http://qelectrotech.org/wiki/doc/elements_license";
+    NewBase.ELMT_converter_version="V3.0 DB";
+    NewBase.ELMT_converter_by="Ronny Desmedt";
+
+    ui->dxf_log->appendPlainText("Add UUID names, kindinformation, information ... ELMT file \n");
+    ui->dxf_log->moveCursor(QTextCursor::End);
+    ui->dxf_log->repaint();
+
+    //ResultELMT.append(NewBase.DefinitionStart());
+    //DXF_Entities_List.DXF_ResultBegin.append(NewBase.DefinitionStart());
+    dbelmt.clear();
+    dbelmt.append( NewBase.DefinitionStart());
+    index_count_elmt = mydb.dbManager_create_elmt(dbelmt,index_count_elmt);
+
+    //stringsize=DXF_Entities_List.DXF_ResultBegin.count();
+    //emit send_lines(stringsize);
+
+    //Signal_elmt1.clear();
+    //Signal_elmt1.append(DXF_Entities_List.DXF_ResultBegin);
+
+    //emit send_elmt(Signal_elmt1);
+
+    //ResultELMT.append(NewBase.Uuid());
+    //DXF_Entities_List.DXF_ResultBegin.append(NewBase.Uuid());
+    dbelmt.clear();
+    dbelmt.append( NewBase.Uuid());
+    index_count_elmt = mydb.dbManager_create_elmt(dbelmt,index_count_elmt);
+
+    //stringsize=DXF_Entities_List.DXF_ResultBegin.size();
+    //emit send_lines(stringsize);
+
+    //Signal_elmt1.clear();
+    //Signal_elmt1.append(DXF_Entities_List.DXF_ResultBegin);
+
+    //emit send_elmt(Signal_elmt1);
+
+    //ResultELMT.append(NewBase.Names());
+    //DXF_Entities_List.DXF_ResultBegin.append(NewBase.Names());
+    dbelmt.clear();
+    dbelmt.append( NewBase.Names());
+    index_count_elmt = mydb.dbManager_create_elmt(dbelmt,index_count_elmt);
+
+    //stringsize=DXF_Entities_List.DXF_ResultBegin.size();
+    //emit send_lines(stringsize);
+
+    //Signal_elmt1.clear();
+    //Signal_elmt1.append(DXF_Entities_List.DXF_ResultBegin);
+
+    //emit send_elmt(Signal_elmt1);
+
+    //ResultELMT.append(NewBase.KindInformation());
+    //DXF_Entities_List.DXF_ResultBegin.append(NewBase.KindInformation());
+    dbelmt.clear();
+    dbelmt.append( NewBase.KindInformation());
+    index_count_elmt = mydb.dbManager_create_elmt(dbelmt,index_count_elmt);
+
+    //stringsize=DXF_Entities_List.DXF_ResultBegin.size();
+    //emit send_lines(stringsize);
+
+    //Signal_elmt1.clear();
+    //Signal_elmt1.append(DXF_Entities_List.DXF_Result);
+
+    //emit send_elmt(Signal_elmt1);
+
+    //ResultELMT.append(NewBase.Informations());
+    //DXF_Entities_List.DXF_ResultBegin.append(NewBase.Informations());
+    dbelmt.clear();
+    dbelmt.append( NewBase.Informations());
+    index_count_elmt = mydb.dbManager_create_elmt(dbelmt,index_count_elmt);
+
+    //stringsize=DXF_Entities_List.DXF_ResultBegin.size();
+    //emit send_lines(stringsize);
+
+    //Signal_elmt1.clear();
+    //Signal_elmt1.append(DXF_Entities_List.DXF_ResultBegin);
+
+    //emit send_elmt(Signal_elmt1);
+
+    //ResultELMT.append(NewBase.DescriptionStart());
+    //DXF_Entities_List.DXF_ResultBegin.append(NewBase.DescriptionStart());
+    dbelmt.clear();
+    dbelmt.append( NewBase.DescriptionStart());
+    index_count_elmt = mydb.dbManager_create_elmt(dbelmt,index_count_elmt);
+
+    //stringsize=DXF_Entities_List.DXF_ResultBegin.size();
+    //emit send_lines(stringsize);
+
+    //Signal_elmt1.clear();
+    //Signal_elmt1.append(DXF_Entities_List.DXF_ResultBegin);
+
+    //emit send_elmt(Signal_elmt1);
+
+    elmt_entities NewEntity(this);
+
+    connect(&NewEntity ,SIGNAL (Signal1(const QString &)),this ,SLOT(update_proces(const QString &)));
+
+    connect(&NewEntity ,SIGNAL (send_log(const QString &)),this ,SLOT(update_log(const QString &)));
+    connect(&NewEntity ,SIGNAL (send_elmt(const QString &)),this ,SLOT(update_elmt(const QString &)));
+
+
+
+    Signal_log1.clear();
+    Signal_log1.append("============================================================================");
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result : ");
+    stringsize=DXF_Entities_List.DXF_Result.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result Begin : ");
+    stringsize=DXF_Entities_List.DXF_ResultBegin.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result Entitie: ");
+    stringsize=DXF_Entities_List.DXF_ResultEntitie.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result Entitie Line: ");
+    stringsize=DXF_Entities_List.DXF_ResultEntitieLine.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result Entitie Polyline: ");
+    stringsize=DXF_Entities_List.DXF_ResultEntitiePolyline.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result Entitie Lwpolyline: ");
+    stringsize=DXF_Entities_List.DXF_ResultEntitieLwpolyline.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result Entitie Spline: ");
+    stringsize=DXF_Entities_List.DXF_ResultEntitieSpline.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result Entitie Solid: ");
+    stringsize=DXF_Entities_List.DXF_ResultEntitieSolid.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result Entitie Hatch: ");
+    stringsize=DXF_Entities_List.DXF_ResultEntitieHatch.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result Block: ");
+    stringsize=DXF_Entities_List.DXF_ResultBlock.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result Block 2: ");
+    stringsize=DXF_Entities_List.DXF_ResultBlock2.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    Signal_log1.append("DXF_Result Einde : ");
+    stringsize=DXF_Entities_List.DXF_ResultEinde.size();
+    Signal_log1.append(QString::number(stringsize));
+    Signal_log1.append(" \n");
+    emit send_log(Signal_log1);
+
+    Signal_log1.clear();
+    Signal_log1.append("Add DXF entities to ELMT file");
+
+    emit send_log(Signal_log1);
+
+    //NewEntity.Open_SQL_DB(Filename_db);
+
+    ui->ELMT_Result->clear();
+
+    //create entities
+    ui->dxf_log->setPlainText(NewEntity.Get_Entities(Filename_db));
+    ui->dxf_log->moveCursor(QTextCursor::End);
+    ui->dxf_log->repaint();
+
+    NewEntity.Close_SQL_DB(Filename_db);
+
+    Signal_elmt1.clear();
+    Signal_elmt1.append("append entities");
+
+    emit send_elmt(Signal_elmt1);
+
+
+
+    //ResultELMT.append(NewBase.DescriptionEnd());
+    //DXF_Entities_List.DXF_ResultEinde.append(NewBase.DescriptionEnd());
+    dbelmt.clear();
+    dbelmt.append( NewBase.DescriptionEnd());
+    index_count_elmt = mydb.dbManager_create_elmt(dbelmt,index_count_elmt);
+
+    //stringsize=DXF_Entities_List.DXF_ResultEinde.size();
+    //emit send_lines(stringsize);
+
+    //Signal_elmt1.clear();
+    //Signal_elmt1.append(DXF_Entities_List.DXF_ResultEinde);
+
+    //emit send_elmt(Signal_elmt1);
+
+    //ResultELMT.append(NewBase.DefinitionEnd());
+    //DXF_Entities_List.DXF_ResultEinde.append(NewBase.DefinitionEnd());
+    dbelmt.clear();
+    dbelmt.append( NewBase.DefinitionEnd());
+    index_count_elmt = mydb.dbManager_create_elmt(dbelmt,index_count_elmt);
+
+    //stringsize=DXF_Entities_List.DXF_ResultEinde.size();
+    //emit send_lines(stringsize);
+
+    //Signal_elmt1.clear();
+    //Signal_elmt1.append(DXF_Entities_List.DXF_ResultEinde);
+
+    //emit send_elmt(Signal_elmt1);
+
+    /*Signal_log1.clear();
+    Signal_log1.append("DXF file converted to ELMT file");
+    Signal_log1.append("\n");
+    Signal_log1.append("============================================================================\n");
+    Signal_log1.append(QTime::currentTime().toString());
+    Signal_log1.append(" => End of converting DXF to ELMT \n");
+    Signal_log1.append("============================================================================");
+    Signal_log1.append("\n");
+
+    emit send_log(Signal_log1);*/
+
+
+
+    Signal_log1.clear();
+    Signal_log1.append("============================================================================");
+    Signal_log1.append(QTime::currentTime().toString());
+    Signal_log1.append(" - Closed file : ");
+    Signal_log1.append(DXF_main_base[0].dxf_savepath + "/" + DXF_main_base[0].dxf_openfile + ".elmt");
+    Signal_log1.append("============================================================================");
+    emit send_log(Signal_log1);
 }

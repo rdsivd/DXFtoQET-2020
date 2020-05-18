@@ -1265,7 +1265,7 @@ QString elmt_blocks::Insert_Block_1()
                     }
                     else
                     {
-                        DXF_Entities_List.DXF_ResultBlock.append(New_DXF_LWPolyline2.Create_polyline());
+                        //DXF_Entities_List.DXF_ResultBlock.append(New_DXF_LWPolyline2.Create_polyline());
                     }
 					//DXF_Block_Value.append(New_DXF_LWPolyline.Create_polyline());
 

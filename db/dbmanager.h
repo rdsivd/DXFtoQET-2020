@@ -108,6 +108,9 @@ class dbManager : public QWidget
 
 	QString db_split_header(const QString &pathname);
 
+    int32_t dbManager_create_elmt (const QStringList &elmt_txt, int32_t Index_count);
+
+
 	signals:
 
 
